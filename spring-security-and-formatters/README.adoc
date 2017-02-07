@@ -22,3 +22,11 @@ A simple work-around is to `@Override` the https://github.com/jcagarcia/proofs/b
 After that, execute this proof of concept again using the `mvn compile spring-boot:run` command and you could check that the `Create Pets` view shows an enum value with a valid format applied.
 
 image::screenshots/enum_ok.png[]
+
+== Answers and Issues
+
+* StackOverflow answer
+** http://stackoverflow.com/questions/42086046/spring-formatters-have-been-not-registered-when-some-class-extends-websecurityco
+
+* Spring Security issue
+** https://github.com/spring-projects/spring-security/issues/4202

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/home-layout}">
+  <head>
+
+    <title data-th-text="#{welcome_label}">Welcome - SpringRoo Application</title>
+
+  </head>
+
+  <body class="home" id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+      <!-- CONTAINER -->
+      <div class="container bg-container">
+        <!-- CONTENT -->
+        <!--
+          Only the inner content of the following tag "section" is included
+          within the template, in the section "content"
+        -->
+        <section data-layout-fragment="content">
+        </section>
+        <!-- /CONTENT -->
+      </div>
+      <!-- /CONTAINER -->
+
+      <footer class="container">
+        <!-- Content replaced by layout of the page displayed -->
+      </footer>
+
+      <!-- JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so that the pages load faster -->
+      <!-- JavaScript loaded by layout of the page displayed -->
+      <!--
+           Only the inner content of the following tag "javascript" is included
+           within the template, in the div "javascript"
+          -->
+      <div data-layout-fragment="javascript">
+      </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head>
+    <title data-th-text="#{label_create_entity(#{label_owner})}">
+    Create Owner - petclinic - SpringRoo Application</title>
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/build/jquery.datetimepicker.min.css}" />
+  </head>
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+
+
+      <!-- CONTENT -->
+      <section data-layout-fragment="content">
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('OwnersCollectionThymeleafController')},detailCollectionLink=${@linkBuilder.of('OwnersItemPetsThymeleafController')}">
+  	<!--
+  	  Only the inner content of the following tag "section" is included
+  	  within the template, in the section "content"
+  	-->
+
+          <h1 data-th-text="#{label_edit_entity(#{label_owner})}">Edit Owner</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${owner}" data-th-action="${detailCollectionLink.to('create').with('owner', owner.id)}">
+            <fieldset id="containerFields">
+              <legend data-th-text="#{label_data_entity(#{label_pet})}">Pet data </legend>
+
+                <div class="form-group has-error has-feedback" data-z="1bbbd492" id="pets-detail" data-th-class="form-group" data-th-with="select2ControllerLink=${@linkBuilder.of('PetsCollectionThymeleafController')}">
+                    <div class="col-md-6">
+                      <select id="pets" name="petsIds" class="form-control dropdown-select-ajax" data-allow-clear="true" data-ajax--cache="true" data-ajax--data-type="json" data-ajax--delay="250" multiple="multiple" data-data-ajax--url="${select2ControllerLink.to('select2')}" data-data-placeholder="#{info_select_pets}">
+                          <option data-th-each="item: *{pets}" selected="true" data-th-text="${item}" data-th-value="${item.id}">Another product to select</option>
+                      </select>
+                    </div>
+                </div>
+              </fieldset>
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-9 col-md-offset-3">
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_submit}">Save</button>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+    <!-- Application -->
+    <script type="text/javascript" charset="utf8" src="../../static/public/js/main.js"></script>
+
+</body>
+</html>

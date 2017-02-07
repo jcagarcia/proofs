@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head>
+
+    <title data-th-text="#{label_edit_entity(#{label_visit})}">
+    Edit Visit - Spring Roo application</title>
+
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.min.css}" />
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content">
+
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('VisitsCollectionThymeleafController')},itemLink=${@linkBuilder.of('VisitsItemThymeleafController')}">
+
+          <h1 data-th-text="#{label_edit_entity(#{label_visit})}">Edit Visit</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${visit}" data-th-action="@{${itemLink.to('update').with('visit', visit.id)}}">
+            <input type="hidden" name="_method" value="PUT" />
+            <input type="hidden" name="version" data-th-value="*{version}" />
+
+             <fieldset id="containerFields">
+              <legend class="sr-only" data-th-text="#{label_data_entity(#{label_visit})}">Visit data </legend>
+
+<div class="form-group has-error has-feedback" data-z="5a6c8e7e" id="visit-description-field" data-th-classappend="${#fields.hasErrors('description')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="description" class="col-md-3 control-label" data-th-text="#{label_visit_description}">description</label>
+  <div class="col-md-6">
+    <input id="description" name="description" data-th-value="*{{description}}" type="text" class="form-control" placeholder="description" data-th-placeholder="#{label_visit_description}" data-toggle="tooltip" aria-describedby="descriptionStatus" maxlength="255" size="255" />
+      <span data-th-classappend="${#fields.hasErrors('description')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('description')}" aria-hidden="true"></span>
+      <span id="description-error" class="help-block" data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" id="visit-visitdate-field" data-z="1cc7dabe" data-th-classappend="${#fields.hasErrors('visitDate')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="visitDate" class="col-md-3 control-label" data-th-text="#{label_visit_visitdate}">visitDate</label>
+  <div class="col-md-3">
+    <input id="visitDate" name="visitDate" data-th-value="*{{visitDate}}" type="text" class="form-control datetimepicker" placeholder="visitDate" data-th-placeholder="#{label_visit_visitdate}" data-th-attr="data-dateformat=${visitDate_date_format}" data-toggle="tooltip" required="required" /> <span data-th-classappend="${#fields.hasErrors('visitDate')}? 'glyphicon glyphicon-remove form-control-feedback'" data-th-if="${#fields.hasErrors('visitDate')}" aria-hidden="true"></span>
+     <span id="visitDate-error" class="help-block" data-th-if="${#fields.hasErrors('visitDate')}" data-th-errors="*{visitDate}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="de52851e" id="visit-pet-field" data-th-classappend="${#fields.hasErrors('pet')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('PetsCollectionThymeleafController')}">
+    <label for="pet" class="col-md-3 control-label" data-th-text="#{label_visit_pet}">Pet</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{pet}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{pet} == null" data-th-value="*{pet.id}" data-th-text="*{pet}" selected="selected">Pet</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('pet')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('pet')}" aria-hidden="true"></span>
+      <span id="pet-error" class="help-block" data-th-if="${#fields.hasErrors('pet')}" data-th-errors="*{pet}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="dea9cc5e" id="visit-vet-field" data-th-classappend="${#fields.hasErrors('vet')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('VetsCollectionThymeleafController')}">
+    <label for="vet" class="col-md-3 control-label" data-th-text="#{label_visit_vet}">Vet</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{vet}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{vet} == null" data-th-value="*{vet.id}" data-th-text="*{vet}" selected="selected">Vet</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('vet')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('vet')}" aria-hidden="true"></span>
+      <span id="vet-error" class="help-block" data-th-if="${#fields.hasErrors('vet')}" data-th-errors="*{vet}">Error message.</span>
+    </div>
+</div>
+             </fieldset>
+
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="pull-left">
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                  </div>
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_submit}">Save</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+   </div>
+   <!-- /CONTAINER -->
+
+   <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+   </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+
+    <!-- DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" data-th-src="@{/webjars/datetimepicker/build/jquery.datetimepicker.full.min.js}"></script>
+    <script src="../../static/public/js/datetimepicker-defaults.js" data-th-src="@{/public/js/datetimepicker-defaults.js}"></script>
+
+    <!-- jquery.inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js" data-th-src="@{/webjars/jquery.inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+        jQuery(document).ready(
+      	  function() {
+      	    Inputmask.extendAliases({
+      	      'numeric' : {
+      	         'groupSeparator' : /*[[#{label_inputmask_groupSeparator}]]*/'.',
+      	         'radixPoint' : /*[[#{label_inputmask_radixPoint}]]*/','
+      	       },
+      	       'currency' : {
+      	          'prefix' : /*[[#{label_inputmask_prefix}]]*/'',
+      	          'suffix' : /*[[#{label_inputmask_suffix}]]*/' €'
+      	        }
+      	    });
+      	 });
+       })(jQuery);
+    </script>
+    <script src="../../static/public/js/inputmask-defaults.js" data-th-src="@{/public/js/inputmask-defaults.js}"></script>
+
+    <!-- JQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js" data-th-src="@{/webjars/jquery-validation/dist/jquery.validate.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js" data-th-src="@{/webjars/jquery-validation/dist/additional-methods.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_es.js" data-th-src="@{/webjars/jquery-validation/src/localization/messages_}+${#locale.language}+'.js'" data-th-if="${#locale.language} != 'en'">
+      </script>
+    <script src="../../static/public/js/validation-defaults.js" data-th-src="@{/public/js/validation-defaults.js}">
+      </script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+         jQuery(document).ready(function() {
+      	   jQuery.extend( jQuery.validator.messages, {
+      	     'dateformat' : /*[[#{error_invalid_date}]]*/ 'Please enter a correct date/time',
+      	     'inputmask': /*[[#{error_invalid_maskValue}]]*/ 'Please enter a valid value',
+      	   });
+      	 });
+      })(jQuery);
+      </script>
+
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+  <head>
+
+    <title data-th-text="|#{label_show_entity(#{label_pet})}|">Show Pet - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content" data-th-object="${pet}">
+        <div class="container-fluid content">
+
+          <!-- CONTENT -->
+          <h1 data-th-text="#{label_show_entity(#{label_pet})}">Show Pet</h1>
+
+            <div id="mainEntityFieldSet">
+              <h2 data-th-text="#{label_data_entity(#{label_pet})}">Pet data</h2>
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="pet-sendreminders-field" data-z="8114df6a">
+            	      <strong data-th-text="#{label_pet_sendreminders}">sendReminders</strong>
+                    <span data-th-text="*{{sendReminders}}">sendRemindersValue</span>
+         	        </li>
+                  <li id="pet-name-field" data-z="88472854">
+            	      <strong data-th-text="#{label_pet_name}">name</strong>
+                    <span data-th-text="*{{name}}">nameValue</span>
+         	        </li>
+                  <li id="pet-weight-field" data-z="e81cdd74">
+            	      <strong data-th-text="#{label_pet_weight}">weight</strong>
+                    <span data-th-text="*{{weight}}">weightValue</span>
+         	        </li>
+                  <li id="pet-type-field" data-z="94374e74">
+            	      <strong data-th-text="#{label_pet_type}">type</strong>
+                    <span data-th-text="*{{type}}">typeValue</span>
+         	        </li>
+                  <li id="pet-owner-field" data-z="ddfc3b4a">
+            	      <strong data-th-text="#{label_pet_owner}">owner</strong>
+                    <span data-th-text="*{{owner}}">ownerValue</span>
+         	        </li>
+                  <li id="pet-createddate-field" data-z="ef7a52ca">
+            	      <strong data-th-text="#{label_pet_createddate}">createdDate</strong>
+                    <span data-th-text="*{{createdDate}}">createdDateValue</span>
+         	        </li>
+                  <li id="pet-createdby-field" data-z="1728706a">
+            	      <strong data-th-text="#{label_pet_createdby}">createdBy</strong>
+                    <span data-th-text="*{{createdBy}}">createdByValue</span>
+         	        </li>
+                  <li id="pet-modifieddate-field" data-z="6dcc31f4">
+            	      <strong data-th-text="#{label_pet_modifieddate}">modifiedDate</strong>
+                    <span data-th-text="*{{modifiedDate}}">modifiedDateValue</span>
+         	        </li>
+                  <li id="pet-modifiedby-field" data-z="f3dc1214">
+            	      <strong data-th-text="#{label_pet_modifiedby}">modifiedBy</strong>
+                    <span data-th-text="*{{modifiedBy}}">modifiedByValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+
+          <!-- details -->
+        <hr>
+        <div id="details-level-1">
+            <ul class="nav nav-tabs" id="nav-tabs">
+                <li class="active">
+                  <a id="visits-detail-table-tab" data-toggle="tab" href="#detail-visits-detail" data-z="4581133a">Visits</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="tab-content">
+              <div id="detail-visits-detail" class="tab-pane active">
+                <!--START DETAIL TABLE-->
+                <div class="table-responsive" data-th-with="detailCollectionLink=${@linkBuilder.of('PetsItemVisitsThymeleafController')},detailItemLink=${@linkBuilder.of('VisitsItemThymeleafController')},id=*{{id}}">
+                    <table id="visits-detail-table" style="width: 99.7%" class="table table-striped table-hover table-bordered" data-datatables="true" data-row-id="id" data-z="4581133a" data-order="[[ 1, &quot;asc&quot; ]]" data-data-load-url="${detailCollectionLink.to('datatables').with('pet', id)}" data-data-show-url="${detailItemLink.to('show').with('visit', '_ID_')}" data-data-edit-url="${detailItemLink.to('editForm').with('visit', '_ID_')}" data-data-create-url="${detailCollectionLink.to('createForm').with('pet', id)}" data-data-delete-url="${detailCollectionLink.to('removeFromVisits').with('pet', id).with('visitsToRemove', '_ID_')}" data-data-delete-batch-url="${detailCollectionLink.to('removeFromVisitsBatch').with('pet', id).with('visitsToRemove', '_ID_')}">
+                      <caption class="sr-only" data-th-text="#{label_list_of_entity(#{label_pet_visits})}">Visits List</caption>
+                      <thead>
+                        <tr>
+                          <th data-data="id" data-checkboxes="true"></th>
+                              <th data-data="description" data-th-text="#{label_pet_visits_description}">description</th>
+                              <th data-data="visitDate" data-th-text="#{label_pet_visits_visitdate}">visitDate</th>
+                              <th data-data="pet" data-th-text="#{label_pet_visits_pet}">pet</th>
+                              <th data-data="vet" data-th-text="#{label_pet_visits_vet}">vet</th>
+                              <th data-data="id" data-orderable="false" data-searchable="false" class="dttools" data-th-text="#{label_tools}">Tools</th>
+                        </tr>
+                      </thead>
+                      <tbody data-th-remove="all">
+                        <tr>
+                              <td>description</td>
+                              <td>visitDate</td>
+                              <td>pet</td>
+                              <td>vet</td>
+                          <td data-th-text="#{label_tools}">Tools</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- content replaced by modal-confirm fragment of modal-confirm.html -->
+                    <div data-th-replace="~{fragments/modal-confirm-delete :: modalConfirmDelete(tableId='visits-detail-table',
+                        title=#{label_delete_entity(#{label_pet_visits})}, message=#{info_delete_item_confirm})}">
+                    </div>
+                   <div data-th-replace="~{fragments/modal-confirm-delete-batch :: modalConfirmDeleteBatch(tableId='visits-detail-table',
+                        title=#{label_delete_entity(#{label_pet_visits})}, message=#{info_delete_batch_confirm})}">
+                    </div>
+                    <div data-th-replace="~{fragments/modal-export-empty-error :: modalExportEmptyError(tableId='visits-detail-table',
+                        title=#{label_export_empty_error(#{label_pet_visits})}, message=#{info_export_empty_error})}">
+                    </div>
+                </div> <!--/table-responsive">
+                <!--END TABLE-->
+              </div> <!--/tab-pane -->
+            </div> <!--/tab-content-->
+        </div>
+
+          <div class="clearfix">
+            <div class="pull-left">
+              <a id="Pet_list" href="list.html" class="btn btn-default" data-th-title="#{label_goBack}" data-th-href="${@linkBuilder.of('PetsCollectionThymeleafController').to('list')}">
+  	             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  	             <span data-th-text="#{label_back}">Back</span>
+  	          </a>
+            </div>
+            <div class="pull-right">
+      	       <a id="Pet_edit" href="edit.html" class="btn btn-primary" data-th-title="#{label_goEdit}" data-th-href="${@linkBuilder.of('PetsItemThymeleafController').to('editForm').with('pet', pet.id)}" data-th-text="#{label_edit}">Edit</a>
+            </div>
+          </div>
+
+        </hr></div>
+        
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

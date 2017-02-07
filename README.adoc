@@ -6,6 +6,6 @@ The following projects have been included:
 
 == Spring Security and Spring Formatters
 
-This proof of concept demostratse that exists an error during formatters registration in an Spring application if some `@Configuration` class extends the `WebSecurityConfigurerAdapter` abstract class.
+This proof of concept tries to demostratse that exists an error during formatters registration in a Spring 4.3.3 application using Spring Boot if some `@Configuration` class extends the `WebSecurityConfigurerAdapter` abstract class.
 
 For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-security-and-formatters[spring-security-and-formatters]

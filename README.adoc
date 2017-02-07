@@ -1,0 +1,11 @@
+= Proofs Of Concept
+
+This repository contains a list of projects used to check functionalities, implement new features, demostrate errors, etc.
+
+The following projects have been included:
+
+== Spring Security and Spring Formatters
+
+This proof of concept demostratse that exists an error during formatters registration in an Spring application if some `@Configuration` class extends the `WebSecurityConfigurerAdapter` abstract class.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-security-and-formatters[spring-security-and-formatters]

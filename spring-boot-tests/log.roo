@@ -1,0 +1,13 @@
+// Spring Roo 2.0.0.RC2 [rev 76d128f] log opened at 2017-09-25 15:07:19
+hint
+project setup --topLevelPackage io.github.jcagarcia.proof.tests --java 8 --packaging WAR 
+jpa setup --provider HIBERNATE --database POSTGRES --databaseName tests_proof --userName proof --password proof
+entity jpa --class ~.domain.Book
+field string --fieldName name --notNull 
+field number --fieldName isbn --type java.lang.Number
+repository jpa --entity ~.domain.Book --interface ~.repository.BookRepository
+service --entity ~.domain.Book --interface ~.service.api.BookService --class ~.service.impl.BookServiceImpl --repository ~.repository.BookRepository 
+web mvc setup 
+web mvc controller --entity ~.domain.Book --package ~.web --pathPrefix /api --responseType JSON 
+// Spring Roo 2.0.0.RC2 [rev 76d128f] log opened at 2017-09-25 15:41:22
+hint

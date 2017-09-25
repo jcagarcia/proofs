@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!-- BOOK TABLE -->
+    <changeSet author="jcagarcia" id="001-book">
+        <comment>BOOK table</comment>
+        <createTable tableName="BOOK">
+            <column name="ID" type="BIGINT" remarks="Identifier">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="BOOK_PK" />
+            </column>
+            <column name="NAME" type="java.sql.Types.VARCHAR(255)" remarks="Book name">
+                <constraints nullable="false" />
+            </column>
+            <column name="ISBN" type="java.sql.Types.VARCHAR(255)" remarks="Indicates the ISBN code for this book" />
+
+            <column name="VERSION" type="INTEGER" remarks="Version for optimistic concurrency control" />
+        </createTable>
+
+        <createSequence sequenceName="BOOK_SEQ" startValue="1" />
+
+    </changeSet>
+
+    <!-- Create the "001-initial-schema" tag -->
+    <changeSet author="jcagarcia" id="001-tag">
+        <tagDatabase tag="001-initial-schema" />
+    </changeSet>
+</databaseChangeLog>

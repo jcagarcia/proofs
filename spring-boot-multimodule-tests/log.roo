@@ -1,0 +1,12 @@
+// Spring Roo 2.0.0.RC2 [rev 76d128f] log opened at 2017-09-26 08:33:19
+// [failed] project setup --topLevelPackage io.github.jcagarcia.proof.tests --java 8 --packaging WAR --multimodule 
+project setup --topLevelPackage io.github.jcagarcia.proof.tests --java 8 --multimodule 
+jpa setup --provider HIBERNATE --database POSTGRES --databaseName tests_proof --userName proof --password proof
+entity jpa --class model:~.domain.Book
+field string --fieldName name --notNull 
+field string --fieldName isbn
+repository jpa --entity model:~.domain.Book --interface repository:~.BookRepository
+service --entity ~.domain.Book --repository repository:~.BookRepository --interface service-api:~.BookService --class service-impl:~.BookServiceImpl
+web mvc setup 
+web mvc controller --entity ~.domain.Book --pathPrefix /api --package application:~.web --responseType JSON 
+hint

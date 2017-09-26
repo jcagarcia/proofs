@@ -12,4 +12,8 @@ For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-sec
 
 == Spring Boot Tests
 
-This proof of concept shows how to configure Spring Boot test to create table schemas and include sample data using Liquibase.
+This proof of concept shows how to configure Spring Boot tests to create table schemas and include sample data using Liquibase.
+
+== Spring Boot Multimodule Tests
+
+This proof of concept shows how to configure Spring Boot tests in a multimodule maven project to create table schemas and include sample data using Liquibase.

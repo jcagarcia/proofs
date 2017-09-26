@@ -1,0 +1,8 @@
+.idea/
+tests.iml
+application/application.iml
+integration/integration.iml
+model/model.iml
+repository/repository.iml
+service-api/service.api.iml
+service-impl/service.impl.iml

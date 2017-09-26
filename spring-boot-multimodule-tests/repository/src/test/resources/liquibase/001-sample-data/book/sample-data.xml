@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jcagarcia" id="sample-book-data-load" context="test">
+        <comment>Loading Sample default BOOK Data</comment>
+        <loadData tableName="BOOK" file="sample-book.csv" relativeToChangelogFile="true" />
+        <rollback>
+            <delete tableName="BOOK" />
+        </rollback>
+    </changeSet>
+
+    <changeSet author="jcagarcia" id="sample-book-data-recreate_sequence">
+        <comment>Recreate the sequences</comment>
+        <dropSequence sequenceName="BOOK_SEQ" />
+        <createSequence sequenceName="BOOK_SEQ" startValue="100" />
+        <rollback>
+            <dropSequence sequenceName="BOOK_SEQ" />
+            <createSequence sequenceName="BOOK_SEQ" startValue="1" />
+        </rollback>
+    </changeSet>
+
+    <!-- Create the "sample-book-data" tag -->
+    <changeSet author="jcagarcia" id="sample-book-data-tag" context="test">
+        <tagDatabase tag="sample-book-data-tag" />
+    </changeSet>
+
+</databaseChangeLog>

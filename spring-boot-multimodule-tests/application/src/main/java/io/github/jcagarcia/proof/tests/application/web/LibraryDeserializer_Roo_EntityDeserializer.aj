@@ -7,34 +7,34 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
-import io.github.jcagarcia.proof.tests.application.web.BookDeserializer;
-import io.github.jcagarcia.proof.tests.model.domain.Book;
-import io.github.jcagarcia.proof.tests.service.api.BookService;
+import io.github.jcagarcia.proof.tests.application.web.LibraryDeserializer;
+import io.github.jcagarcia.proof.tests.model.domain.Library;
+import io.github.jcagarcia.proof.tests.service.api.LibraryService;
 import io.springlets.web.NotFoundException;
 import java.io.IOException;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.core.convert.ConversionService;
 
-privileged aspect BookDeserializer_Roo_EntityDeserializer {
+privileged aspect LibraryDeserializer_Roo_EntityDeserializer {
     
-    declare @type: BookDeserializer: @JsonComponent;
+    declare @type: LibraryDeserializer: @JsonComponent;
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @return BookService
+     * @return LibraryService
      */
-    public BookService BookDeserializer.getBookService() {
-        return bookService;
+    public LibraryService LibraryDeserializer.getLibraryService() {
+        return libraryService;
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param bookService
+     * @param libraryService
      */
-    public void BookDeserializer.setBookService(BookService bookService) {
-        this.bookService = bookService;
+    public void LibraryDeserializer.setLibraryService(LibraryService libraryService) {
+        this.libraryService = libraryService;
     }
     
     /**
@@ -42,7 +42,7 @@ privileged aspect BookDeserializer_Roo_EntityDeserializer {
      * 
      * @return ConversionService
      */
-    public ConversionService BookDeserializer.getConversionService() {
+    public ConversionService LibraryDeserializer.getConversionService() {
         return conversionService;
     }
     
@@ -51,7 +51,7 @@ privileged aspect BookDeserializer_Roo_EntityDeserializer {
      * 
      * @param conversionService
      */
-    public void BookDeserializer.setConversionService(ConversionService conversionService) {
+    public void LibraryDeserializer.setConversionService(ConversionService conversionService) {
         this.conversionService = conversionService;
     }
     
@@ -62,17 +62,17 @@ privileged aspect BookDeserializer_Roo_EntityDeserializer {
      * @param context
      * @param codec
      * @param tree
-     * @return Book
+     * @return Library
      * @throws IOException
      */
-    public Book BookDeserializer.deserializeObject(JsonParser jsonParser, DeserializationContext context, ObjectCodec codec, JsonNode tree) throws IOException {
+    public Library LibraryDeserializer.deserializeObject(JsonParser jsonParser, DeserializationContext context, ObjectCodec codec, JsonNode tree) throws IOException {
         String idText = tree.asText();
         Long id = conversionService.convert(idText, Long.class);
-        Book book = bookService.findOne(id);
-        if (book == null) {
-            throw new NotFoundException("Book not found");
+        Library library = libraryService.findOne(id);
+        if (library == null) {
+            throw new NotFoundException("Library not found");
         }
-        return book;
+        return library;
     }
     
 }

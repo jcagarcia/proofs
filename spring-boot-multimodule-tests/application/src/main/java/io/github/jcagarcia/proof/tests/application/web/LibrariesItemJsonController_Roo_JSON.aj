@@ -3,9 +3,9 @@
 
 package io.github.jcagarcia.proof.tests.application.web;
 
-import io.github.jcagarcia.proof.tests.application.web.BooksItemJsonController;
-import io.github.jcagarcia.proof.tests.model.domain.Book;
-import io.github.jcagarcia.proof.tests.service.api.BookService;
+import io.github.jcagarcia.proof.tests.application.web.LibrariesItemJsonController;
+import io.github.jcagarcia.proof.tests.model.domain.Library;
+import io.github.jcagarcia.proof.tests.service.api.LibraryService;
 import io.springlets.web.NotFoundException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,89 +24,89 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 
-privileged aspect BooksItemJsonController_Roo_JSON {
+privileged aspect LibrariesItemJsonController_Roo_JSON {
     
-    declare @type: BooksItemJsonController: @RestController;
+    declare @type: LibrariesItemJsonController: @RestController;
     
-    declare @type: BooksItemJsonController: @RequestMapping(value = "/api/books/{book}", name = "BooksItemJsonController", produces = MediaType.APPLICATION_JSON_VALUE);
+    declare @type: LibrariesItemJsonController: @RequestMapping(value = "/api/libraries/{library}", name = "LibrariesItemJsonController", produces = MediaType.APPLICATION_JSON_VALUE);
     
     /**
      * TODO Auto-generated constructor documentation
      * 
-     * @param bookService
+     * @param libraryService
      */
     @Autowired
-    public BooksItemJsonController.new(BookService bookService) {
-        this.bookService = bookService;
+    public LibrariesItemJsonController.new(LibraryService libraryService) {
+        this.libraryService = libraryService;
     }
 
     /**
      * TODO Auto-generated method documentation
      * 
      * @param id
-     * @return Book
+     * @return Library
      */
     @ModelAttribute
-    public Book BooksItemJsonController.getBook(@PathVariable("book") Long id) {
-        Book book = bookService.findOne(id);
-        if (book == null) {
-            throw new NotFoundException(String.format("Book with identifier '%s' not found",id));
+    public Library LibrariesItemJsonController.getLibrary(@PathVariable("library") Long id) {
+        Library library = libraryService.findOne(id);
+        if (library == null) {
+            throw new NotFoundException(String.format("Library with identifier '%s' not found",id));
         }
-        return book;
+        return library;
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param book
+     * @param library
      * @return ResponseEntity
      */
     @GetMapping(name = "show")
-    public ResponseEntity<?> BooksItemJsonController.show(@ModelAttribute Book book) {
-        return ResponseEntity.ok(book);
+    public ResponseEntity<?> LibrariesItemJsonController.show(@ModelAttribute Library library) {
+        return ResponseEntity.ok(library);
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param book
+     * @param library
      * @return UriComponents
      */
-    public static UriComponents BooksItemJsonController.showURI(Book book) {
+    public static UriComponents LibrariesItemJsonController.showURI(Library library) {
         return MvcUriComponentsBuilder
             .fromMethodCall(
-                MvcUriComponentsBuilder.on(BooksItemJsonController.class).show(book))
-            .buildAndExpand(book.getId()).encode();
+                MvcUriComponentsBuilder.on(LibrariesItemJsonController.class).show(library))
+            .buildAndExpand(library.getId()).encode();
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param storedBook
-     * @param book
+     * @param storedLibrary
+     * @param library
      * @param result
      * @return ResponseEntity
      */
     @PutMapping(name = "update")
-    public ResponseEntity<?> BooksItemJsonController.update(@ModelAttribute Book storedBook, @Valid @RequestBody Book book, BindingResult result) {
+    public ResponseEntity<?> LibrariesItemJsonController.update(@ModelAttribute Library storedLibrary, @Valid @RequestBody Library library, BindingResult result) {
         
         if (result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         }
-        book.setId(storedBook.getId());
-        getBookService().save(book);
+        library.setId(storedLibrary.getId());
+        getLibraryService().save(library);
         return ResponseEntity.ok().build();
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param book
+     * @param library
      * @return ResponseEntity
      */
     @DeleteMapping(name = "delete")
-    public ResponseEntity<?> BooksItemJsonController.delete(@ModelAttribute Book book) {
-        getBookService().delete(book);
+    public ResponseEntity<?> LibrariesItemJsonController.delete(@ModelAttribute Library library) {
+        getLibraryService().delete(library);
         return ResponseEntity.ok().build();
     }
     

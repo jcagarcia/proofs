@@ -3,6 +3,7 @@
 
 package io.github.jcagarcia.proof.tests.application.web;
 
+import io.github.jcagarcia.proof.tests.application.web.BooksItemJsonController;
 import io.github.jcagarcia.proof.tests.service.api.BookService;
 
 privileged aspect BooksItemJsonController_Roo_Controller {

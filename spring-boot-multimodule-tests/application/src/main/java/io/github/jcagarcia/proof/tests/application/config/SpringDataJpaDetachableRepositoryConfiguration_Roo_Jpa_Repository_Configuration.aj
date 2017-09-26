@@ -4,14 +4,15 @@
 package io.github.jcagarcia.proof.tests.application.config;
 
 import io.github.jcagarcia.proof.tests.TestsApplication;
+import io.github.jcagarcia.proof.tests.application.config.SpringDataJpaDetachableRepositoryConfiguration;
 import io.springlets.data.jpa.repository.support.DetachableJpaRepositoryImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 privileged aspect SpringDataJpaDetachableRepositoryConfiguration_Roo_Jpa_Repository_Configuration {
     
-    declare @type: io.github.jcagarcia.proof.tests.application.config.SpringDataJpaDetachableRepositoryConfiguration: @Configuration;
+    declare @type: SpringDataJpaDetachableRepositoryConfiguration: @Configuration;
     
-    declare @type: io.github.jcagarcia.proof.tests.application.config.SpringDataJpaDetachableRepositoryConfiguration: @EnableJpaRepositories(repositoryBaseClass = DetachableJpaRepositoryImpl.class, basePackageClasses = TestsApplication.class);
+    declare @type: SpringDataJpaDetachableRepositoryConfiguration: @EnableJpaRepositories(repositoryBaseClass = DetachableJpaRepositoryImpl.class, basePackageClasses = TestsApplication.class);
     
 }

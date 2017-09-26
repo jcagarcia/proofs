@@ -10,3 +10,12 @@ service --entity ~.domain.Book --repository repository:~.BookRepository --interf
 web mvc setup 
 web mvc controller --entity ~.domain.Book --pathPrefix /api --package application:~.web --responseType JSON 
 hint
+// Spring Roo 2.0.0.RC2 [rev 76d128f] log opened at 2017-09-26 09:37:21
+hint
+entity jpa --class model:~.domain.Library
+field string --fieldName name
+field string --fieldName address
+repository jpa --entity ~.domain.Library --interface repository:~.LibraryRepository
+service --entity ~.domain.Library --repository repository:~.LibraryRepository --interface service-api:~.LibraryService --class service-impl:~.LibraryServiceImpl
+web mvc controller --entity ~.domain.Library --package application:~.web --pathPrefix /api --responseType JSON 
+hint

@@ -3,10 +3,10 @@
 
 package io.github.jcagarcia.proof.tests.application.web;
 
-import io.github.jcagarcia.proof.tests.application.web.BooksCollectionJsonController;
-import io.github.jcagarcia.proof.tests.application.web.BooksItemJsonController;
-import io.github.jcagarcia.proof.tests.model.domain.Book;
-import io.github.jcagarcia.proof.tests.service.api.BookService;
+import io.github.jcagarcia.proof.tests.application.web.LibrariesCollectionJsonController;
+import io.github.jcagarcia.proof.tests.application.web.LibrariesItemJsonController;
+import io.github.jcagarcia.proof.tests.model.domain.Library;
+import io.github.jcagarcia.proof.tests.service.api.LibraryService;
 import io.springlets.data.domain.GlobalSearch;
 import java.util.Collection;
 import javax.validation.Valid;
@@ -28,20 +28,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 
-privileged aspect BooksCollectionJsonController_Roo_JSON {
+privileged aspect LibrariesCollectionJsonController_Roo_JSON {
     
-    declare @type: BooksCollectionJsonController: @RestController;
+    declare @type: LibrariesCollectionJsonController: @RestController;
     
-    declare @type: BooksCollectionJsonController: @RequestMapping(value = "/api/books", name = "BooksCollectionJsonController", produces = MediaType.APPLICATION_JSON_VALUE);
+    declare @type: LibrariesCollectionJsonController: @RequestMapping(value = "/api/libraries", name = "LibrariesCollectionJsonController", produces = MediaType.APPLICATION_JSON_VALUE);
     
     /**
      * TODO Auto-generated constructor documentation
      * 
-     * @param bookService
+     * @param libraryService
      */
     @Autowired
-    public BooksCollectionJsonController.new(BookService bookService) {
-        this.bookService = bookService;
+    public LibrariesCollectionJsonController.new(LibraryService libraryService) {
+        this.libraryService = libraryService;
     }
 
     /**
@@ -52,10 +52,10 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
      * @return ResponseEntity
      */
     @GetMapping(name = "list")
-    public ResponseEntity<Page<Book>> BooksCollectionJsonController.list(GlobalSearch globalSearch, Pageable pageable) {
+    public ResponseEntity<Page<Library>> LibrariesCollectionJsonController.list(GlobalSearch globalSearch, Pageable pageable) {
         
-        Page<Book> books = getBookService().findAll(globalSearch, pageable);
-        return ResponseEntity.ok(books);
+        Page<Library> libraries = getLibraryService().findAll(globalSearch, pageable);
+        return ResponseEntity.ok(libraries);
     }
     
     /**
@@ -63,24 +63,24 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
      * 
      * @return UriComponents
      */
-    public static UriComponents BooksCollectionJsonController.listURI() {
+    public static UriComponents LibrariesCollectionJsonController.listURI() {
         return MvcUriComponentsBuilder
             .fromMethodCall(
-                MvcUriComponentsBuilder.on(BooksCollectionJsonController.class).list(null, null))
+                MvcUriComponentsBuilder.on(LibrariesCollectionJsonController.class).list(null, null))
             .build().encode();
     }
     
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param book
+     * @param library
      * @param result
      * @return ResponseEntity
      */
     @PostMapping(name = "create")
-    public ResponseEntity<?> BooksCollectionJsonController.create(@Valid @RequestBody Book book, BindingResult result) {
+    public ResponseEntity<?> LibrariesCollectionJsonController.create(@Valid @RequestBody Library library, BindingResult result) {
         
-        if (book.getId() != null || book.getVersion() != null) {        
+        if (library.getId() != null || library.getVersion() != null) {        
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         
@@ -88,8 +88,8 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         }
         
-        Book newBook = getBookService().save(book);
-        UriComponents showURI = BooksItemJsonController.showURI(newBook);
+        Library newLibrary = getLibraryService().save(library);
+        UriComponents showURI = LibrariesItemJsonController.showURI(newLibrary);
         
         return ResponseEntity.created(showURI.toUri()).build();
     }
@@ -97,18 +97,18 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param books
+     * @param libraries
      * @param result
      * @return ResponseEntity
      */
     @PostMapping(value = "/batch", name = "createBatch")
-    public ResponseEntity<?> BooksCollectionJsonController.createBatch(@Valid @RequestBody Collection<Book> books, BindingResult result) {
+    public ResponseEntity<?> LibrariesCollectionJsonController.createBatch(@Valid @RequestBody Collection<Library> libraries, BindingResult result) {
         
         if (result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         }
         
-        getBookService().save(books);
+        getLibraryService().save(libraries);
         
         return ResponseEntity.created(listURI().toUri()).build();
     }
@@ -116,18 +116,18 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param books
+     * @param libraries
      * @param result
      * @return ResponseEntity
      */
     @PutMapping(value = "/batch", name = "updateBatch")
-    public ResponseEntity<?> BooksCollectionJsonController.updateBatch(@Valid @RequestBody Collection<Book> books, BindingResult result) {
+    public ResponseEntity<?> LibrariesCollectionJsonController.updateBatch(@Valid @RequestBody Collection<Library> libraries, BindingResult result) {
         
         if (result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         }
         
-        getBookService().save(books);
+        getLibraryService().save(libraries);
         
         return ResponseEntity.ok().build();
     }
@@ -139,9 +139,9 @@ privileged aspect BooksCollectionJsonController_Roo_JSON {
      * @return ResponseEntity
      */
     @DeleteMapping(value = "/batch/{ids}", name = "deleteBatch")
-    public ResponseEntity<?> BooksCollectionJsonController.deleteBatch(@PathVariable("ids") Collection<Long> ids) {
+    public ResponseEntity<?> LibrariesCollectionJsonController.deleteBatch(@PathVariable("ids") Collection<Long> ids) {
         
-        getBookService().delete(ids);
+        getLibraryService().delete(ids);
         
         return ResponseEntity.ok().build();
     }

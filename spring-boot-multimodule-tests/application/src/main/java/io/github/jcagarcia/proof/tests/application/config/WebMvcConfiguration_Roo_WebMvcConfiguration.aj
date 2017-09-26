@@ -3,6 +3,7 @@
 
 package io.github.jcagarcia.proof.tests.application.config;
 
+import io.github.jcagarcia.proof.tests.application.config.WebMvcConfiguration;
 import io.tracee.binding.springmvc.TraceeInterceptor;
 import java.lang.Override;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 privileged aspect WebMvcConfiguration_Roo_WebMvcConfiguration {
     
-    declare @type: io.github.jcagarcia.proof.tests.application.config.WebMvcConfiguration: @Configuration;
+    declare @type: WebMvcConfiguration: @Configuration;
     
     /**
      * TODO Auto-generated method documentation

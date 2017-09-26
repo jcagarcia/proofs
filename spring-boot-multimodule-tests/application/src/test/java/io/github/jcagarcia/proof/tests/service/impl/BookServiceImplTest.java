@@ -36,9 +36,6 @@ public class BookServiceImplTest extends AbstractBaseIT {
         // Save the new book using the save method service
         Book savedBook = bookService.save(newBook);
 
-        // Verify that the book service saves a Book instance
-        verify(bookService).save(any(Book.class));
-
         // Obtain the book identifier
         Long bookId = savedBook.getId();
 

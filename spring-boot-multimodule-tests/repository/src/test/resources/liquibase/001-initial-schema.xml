@@ -17,9 +17,21 @@
 
             <column name="VERSION" type="INTEGER" remarks="Version for optimistic concurrency control" />
         </createTable>
-
         <createSequence sequenceName="BOOK_SEQ" startValue="1" />
+    </changeSet>
 
+    <!-- LIBRARY TABLE -->
+    <changeSet author="jcagarcia" id="002-library">
+        <comment>LIBRARY table</comment>
+        <createTable tableName="LIBRARY">
+            <column name="ID" type="BIGINT" remarks="Identifier">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="LIBRARY_PK" />
+            </column>
+            <column name="NAME" type="java.sql.Types.VARCHAR(255)" remarks="Library name" />
+            <column name="ADDRESS" type="java.sql.Types.VARCHAR(255)" remarks="Indicates the address of this library" />
+            <column name="VERSION" type="INTEGER" remarks="Version for optimistic concurrency control" />
+        </createTable>
+        <createSequence sequenceName="LIBRARY_SEQ" startValue="1" />
     </changeSet>
 
     <!-- Create the "001-initial-schema" tag -->

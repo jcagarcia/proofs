@@ -5,7 +5,9 @@ package io.github.jcagarcia.proof.tests.application.config.jackson;
 
 import io.github.jcagarcia.proof.tests.application.config.jackson.DomainModelModule;
 import io.github.jcagarcia.proof.tests.application.web.BookJsonMixin;
+import io.github.jcagarcia.proof.tests.application.web.LibraryJsonMixin;
 import io.github.jcagarcia.proof.tests.model.domain.Book;
+import io.github.jcagarcia.proof.tests.model.domain.Library;
 import org.springframework.boot.jackson.JsonComponent;
 
 privileged aspect DomainModelModule_Roo_DomainModelModule {
@@ -20,6 +22,7 @@ privileged aspect DomainModelModule_Roo_DomainModelModule {
         // Mixin registration
         
         setMixInAnnotation(Book.class, BookJsonMixin.class);
+        setMixInAnnotation(Library.class, LibraryJsonMixin.class);
     }
 
 }

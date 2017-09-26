@@ -8,5 +8,6 @@
 
     <!-- Sample data -->
     <include file="001-sample-data/book/sample-data.xml" relativeToChangelogFile="true" />
+    <include file="001-sample-data/library/sample-data.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

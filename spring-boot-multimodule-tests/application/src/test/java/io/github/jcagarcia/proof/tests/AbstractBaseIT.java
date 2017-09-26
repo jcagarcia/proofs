@@ -1,6 +1,7 @@
 package io.github.jcagarcia.proof.tests;
 
 import io.github.jcagarcia.proof.tests.service.api.BookService;
+import io.github.jcagarcia.proof.tests.service.api.LibraryService;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +26,4 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 public abstract class AbstractBaseIT
 {
-
-    @SpyBean
-    protected BookService bookService;
 }

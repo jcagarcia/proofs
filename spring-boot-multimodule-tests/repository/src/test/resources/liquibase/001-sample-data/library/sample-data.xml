@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jcagarcia" id="sample-library-data-load" context="test">
+        <comment>Loading Sample default LIBRARY Data</comment>
+        <loadData tableName="LIBRARY" file="sample-library.csv" relativeToChangelogFile="true" />
+        <rollback>
+            <delete tableName="LIBRARY" />
+        </rollback>
+    </changeSet>
+
+    <changeSet author="jcagarcia" id="sample-library-data-recreate_sequence">
+        <comment>Recreate the sequences</comment>
+        <dropSequence sequenceName="LIBRARY_SEQ" />
+        <createSequence sequenceName="LIBRARY_SEQ" startValue="100" />
+        <rollback>
+            <dropSequence sequenceName="LIBRARY_SEQ" />
+            <createSequence sequenceName="LIBRARY_SEQ" startValue="1" />
+        </rollback>
+    </changeSet>
+
+    <!-- Create the "sample-library-data" tag -->
+    <changeSet author="jcagarcia" id="sample-library-data-tag" context="test">
+        <tagDatabase tag="sample-library-data-tag" />
+    </changeSet>
+
+</databaseChangeLog>

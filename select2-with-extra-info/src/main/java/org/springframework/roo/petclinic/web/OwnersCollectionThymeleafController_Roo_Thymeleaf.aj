@@ -240,23 +240,6 @@ privileged aspect OwnersCollectionThymeleafController_Roo_Thymeleaf {
     /**
      * TODO Auto-generated method documentation
      * 
-     * @param search
-     * @param pageable
-     * @param locale
-     * @return ResponseEntity
-     */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, name = "select2", value = "/s2")
-    @ResponseBody
-    public ResponseEntity<Select2DataSupport<Owner>> OwnersCollectionThymeleafController.select2(GlobalSearch search, Pageable pageable, Locale locale) {
-        Page<Owner> owners = getOwnerService().findAll(search, pageable);
-        String idExpression = "#{id}";
-        Select2DataSupport<Owner> select2Data = new Select2DataWithConversion<Owner>(owners, idExpression, getConversionService());
-        return ResponseEntity.ok(select2Data);
-    }
-    
-    /**
-     * TODO Auto-generated method documentation
-     * 
      * @param dataBinder
      */
     @InitBinder("owner")

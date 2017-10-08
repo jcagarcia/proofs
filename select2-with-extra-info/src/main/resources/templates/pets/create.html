@@ -75,7 +75,7 @@
     <label for="owner" class="col-md-3 control-label" data-th-text="#{label_pet_owner}">Owner</label>
     <div class="col-md-6">
       <!-- Select2 -->
-      <select data-th-field="*{owner}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+      <select onChange="doCalculation()" data-th-field="*{owner}" class="form-control dropdown-select-ajax-with-custom-template" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
           <option data-th-unless="*{owner} == null" data-th-value="*{owner.id}" data-th-text="*{{owner}}" selected="selected">Owner</option>
       </select>
       <span data-th-classappend="${#fields.hasErrors('owner')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('owner')}" aria-hidden="true"></span>
@@ -169,6 +169,44 @@
 										});
 					})(jQuery);
 		  </script>
+
+
+    <script>
+
+      $(document).ready(function(){
+          $(".dropdown-select-ajax-with-custom-template").select2({
+              debug : false,
+              theme : 'bootstrap',
+              allowClear : true,
+              ajax : {
+                  data : function(params) {
+                      // set search params names to match with GlobalSearch and
+                      // Pageable arguments
+                      var query = {
+                          'search[value]' : params.term,
+                          'page' : params.page - 1,
+                      };
+                      return query;
+                  }
+              },
+              // CUSTOMIZE OPTION ELEMENT
+              templateSelection: function(data, container){
+                if(data.info){
+                  // Add custom attributes to the <option> tag for the selected option
+                  $(data.element).attr('data-email', data.info.email);
+                }
+                return data.text;
+              }
+          });
+      });
+
+      // Define the doCalculation() function
+      function doCalculation(){
+          var email = $(".dropdown-select-ajax-with-custom-template").find(':selected').data('email');
+          alert("email:  " + email);
+      }
+
+    </script>
 
     </div>
 

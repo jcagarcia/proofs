@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_visit})}|">Show Visit - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${visit}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="visit-description-field" data-z="5a6c8e7e">
+            	      <strong data-th-text="#{label_visit_description}">description</strong>
+                    <span data-th-text="*{{description}}">descriptionValue</span>
+         	        </li>
+                  <li id="visit-visitdate-field" data-z="1cc7dabe">
+            	      <strong data-th-text="#{label_visit_visitdate}">visitDate</strong>
+                    <span data-th-text="*{{visitDate}}">visitDateValue</span>
+         	        </li>
+                  <li id="visit-pet-field" data-z="de52851e">
+            	      <strong data-th-text="#{label_visit_pet}">pet</strong>
+                    <span data-th-text="*{{pet}}">petValue</span>
+         	        </li>
+                  <li id="visit-vet-field" data-z="dea9cc5e">
+            	      <strong data-th-text="#{label_visit_vet}">vet</strong>
+                    <span data-th-text="*{{vet}}">vetValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

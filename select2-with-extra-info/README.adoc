@@ -1,0 +1,7 @@
+= Select2 with extra information
+
+This proof of concept shows how to include extra information in a select2 option.
+
+Answering the following question in StackOverflow:
+
+https://stackoverflow.com/questions/46628912/how-can-get-the-object-in-thymeleaf-select-option

@@ -1,0 +1,47 @@
+// Spring Roo 2.0.0.RC2 [rev 76d128f] log opened at 2017-10-08 19:42:19
+project setup --topLevelPackage org.springframework.roo.petclinic
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+enum type --class ~.domain.reference.PetType
+enum constant --name DOG
+enum constant --name CAT
+enum constant --name BIRD
+enum type --class ~.domain.reference.Specialty
+enum constant --name CARDIOLOGY
+enum constant --name DENTISTRY
+enum constant --name NUTRITION
+entity jpa --class ~.domain.Pet --sequenceName PET_SEQ --entityFormatExpression "#{name} (#{type})"
+entity jpa --class ~.domain.Visit --sequenceName VISIT_SEQ --entityFormatMessage visit_format
+entity jpa --class ~.domain.AbstractPerson --abstract 
+entity jpa --class ~.domain.Vet --extends ~.domain.AbstractPerson --entityFormatExpression "#{lastName} (#{specialty})"
+entity jpa --class ~.domain.Owner --extends ~.domain.AbstractPerson --entityFormatExpression "#{lastName} (#{city})"
+focus --class ~.domain.AbstractPerson
+field string --fieldName firstName --sizeMin 3 --sizeMax 30
+field string --fieldName lastName --notNull --sizeMin 3 --sizeMax 30
+field string --fieldName address --notNull --sizeMax 50 --sizeMin 1
+field string --fieldName city --notNull --sizeMax 30
+field string --fieldName telephone --notNull
+field string --fieldName homePage --sizeMax 30
+field string --fieldName email --sizeMax 30 --sizeMin 6
+field date --fieldName birthDay --type java.util.Date --notNull
+focus --class ~.domain.Visit
+field string --fieldName description --sizeMax 255
+field date --fieldName visitDate --type java.util.Date --notNull --past
+focus --class ~.domain.Pet
+field boolean --fieldName sendReminders --notNull --primitive
+field string --fieldName name --notNull --sizeMin 1
+field number --fieldName weight --type java.lang.Float --notNull --min 0
+field enum --fieldName type --type ~.domain.reference.PetType --notNull
+field set --fieldName visits --type ~.domain.Visit
+focus --class ~.domain.Vet
+field date --fieldName employedSince --type java.util.Calendar --notNull --past
+field enum --fieldName specialty --type ~.domain.reference.Specialty --notNull false
+field set --fieldName visits --type ~.domain.Visit
+focus --class ~.domain.Owner
+field set --fieldName pets --type ~.domain.Pet --mappedBy owner --notNull false --cardinality ONE_TO_MANY
+entity projection --class ~.domain.VetInfo --entity ~.domain.Vet --fields id,firstName,lastName,specialty --entityFormatExpression "#{firstName} #{lastName}"
+repository jpa --entity ~.domain.Vet --interface ~.repository.VetRepository --defaultReturnType ~.domain.VetInfo
+repository jpa --all --package ~.repository
+service --all --apiPackage ~.service.api --implPackage ~.service.impl
+web mvc setup
+web mvc view setup --type THYMELEAF
+web mvc controller --all --responseType THYMELEAF

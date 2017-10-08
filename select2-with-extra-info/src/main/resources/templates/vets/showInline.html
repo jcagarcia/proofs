@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_vet})}|">Show Vet - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${vet}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="vet-firstname-field" data-z="ddfe12a4">
+            	      <strong data-th-text="#{label_vet_firstname}">firstName</strong>
+                    <span data-th-text="*{{firstName}}">firstNameValue</span>
+         	        </li>
+                  <li id="vet-lastname-field" data-z="d3caee3a">
+            	      <strong data-th-text="#{label_vet_lastname}">lastName</strong>
+                    <span data-th-text="*{{lastName}}">lastNameValue</span>
+         	        </li>
+                  <li id="vet-address-field" data-z="3c6d0a4">
+            	      <strong data-th-text="#{label_vet_address}">address</strong>
+                    <span data-th-text="*{{address}}">addressValue</span>
+         	        </li>
+                  <li id="vet-city-field" data-z="eef9665a">
+            	      <strong data-th-text="#{label_vet_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="vet-telephone-field" data-z="12ec7164">
+            	      <strong data-th-text="#{label_vet_telephone}">telephone</strong>
+                    <span data-th-text="*{{telephone}}">telephoneValue</span>
+         	        </li>
+                  <li id="vet-homepage-field" data-z="9f62689a">
+            	      <strong data-th-text="#{label_vet_homepage}">homePage</strong>
+                    <span data-th-text="*{{homePage}}">homePageValue</span>
+         	        </li>
+                  <li id="vet-email-field" data-z="634d68e4">
+            	      <strong data-th-text="#{label_vet_email}">email</strong>
+                    <span data-th-text="*{{email}}">emailValue</span>
+         	        </li>
+                  <li id="vet-birthday-field" data-z="ed12767a">
+            	      <strong data-th-text="#{label_vet_birthday}">birthDay</strong>
+                    <span data-th-text="*{{birthDay}}">birthDayValue</span>
+         	        </li>
+                  <li id="vet-employedsince-field" data-z="651bcda4">
+            	      <strong data-th-text="#{label_vet_employedsince}">employedSince</strong>
+                    <span data-th-text="*{{employedSince}}">employedSinceValue</span>
+         	        </li>
+                  <li id="vet-specialty-field" data-z="be863a24">
+            	      <strong data-th-text="#{label_vet_specialty}">specialty</strong>
+                    <span data-th-text="*{{specialty}}">specialtyValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

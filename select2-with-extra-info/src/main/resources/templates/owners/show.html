@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+  <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_owner})}|">Show Owner - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content" data-th-object="${owner}">
+        <div class="container-fluid content">
+
+          <!-- CONTENT -->
+          <h1 data-th-text="#{label_show_entity(#{label_owner})}">Show Owner</h1>
+
+            <div id="mainEntityFieldSet">
+              <h2 data-th-text="#{label_data_entity(#{label_owner})}">Owner data</h2>
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="owner-firstname-field" data-z="4b629416">
+            	      <strong data-th-text="#{label_owner_firstname}">firstName</strong>
+                    <span data-th-text="*{{firstName}}">firstNameValue</span>
+         	        </li>
+                  <li id="owner-lastname-field" data-z="6bf77688">
+            	      <strong data-th-text="#{label_owner_lastname}">lastName</strong>
+                    <span data-th-text="*{{lastName}}">lastNameValue</span>
+         	        </li>
+                  <li id="owner-address-field" data-z="cee10696">
+            	      <strong data-th-text="#{label_owner_address}">address</strong>
+                    <span data-th-text="*{{address}}">addressValue</span>
+         	        </li>
+                  <li id="owner-city-field" data-z="306245a8">
+            	      <strong data-th-text="#{label_owner_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="owner-telephone-field" data-z="8050f2d6">
+            	      <strong data-th-text="#{label_owner_telephone}">telephone</strong>
+                    <span data-th-text="*{{telephone}}">telephoneValue</span>
+         	        </li>
+                  <li id="owner-homepage-field" data-z="378ef0e8">
+            	      <strong data-th-text="#{label_owner_homepage}">homePage</strong>
+                    <span data-th-text="*{{homePage}}">homePageValue</span>
+         	        </li>
+                  <li id="owner-email-field" data-z="4f007356">
+            	      <strong data-th-text="#{label_owner_email}">email</strong>
+                    <span data-th-text="*{{email}}">emailValue</span>
+         	        </li>
+                  <li id="owner-birthday-field" data-z="853efec8">
+            	      <strong data-th-text="#{label_owner_birthday}">birthDay</strong>
+                    <span data-th-text="*{{birthDay}}">birthDayValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+
+          <div class="clearfix">
+            <div class="pull-right">
+             <a id="Owner_edit" href="edit.html" class="btn btn-primary" data-th-title="#{label_goEdit}" data-th-href="${@linkBuilder.of('OwnersItemThymeleafController').to('editForm').with('owner', owner.id)}" data-th-text="#{label_edit}">Edit</a>
+            </div>
+          </div>
+
+
+          <div class="clearfix">
+            <div class="pull-left">
+              <a id="Owner_list" href="list.html" class="btn btn-default" data-th-title="#{label_goBack}" data-th-href="${@linkBuilder.of('OwnersCollectionThymeleafController').to('list')}">
+  	             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  	             <span data-th-text="#{label_back}">Back</span>
+  	          </a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,7 @@
+= Spring Roo application without AspectJ files
+
+This proof of concept is a sample application that emulates an Spring Boot application generated with Spring Roo. However, instead of use .aj files for the ITDs, it uses .java files. This could solve some performance and support problems with some IDEs.
+
+== ITDs
+
+TODO

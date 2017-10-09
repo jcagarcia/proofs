@@ -4,16 +4,28 @@ This repository contains a list of projects used to check functionalities, imple
 
 The following projects have been included:
 
+== Select2 with extra info
+
+This PoC shows how to include extra information in a select2 option element that has been generated using the Spring Roo tool.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/select2-with-extra-info[select2-with-extra-info]
+
+== Spring Boot Multimodule Tests
+
+This proof of concept shows how to configure Spring Boot tests in a multimodule maven project to create table schemas and include sample data using Liquibase.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-boot-multimodule-tests[spring-boot-multimodule-tests]
+
+== Spring Boot Tests
+
+This proof of concept shows how to configure Spring Boot tests to create table schemas and include sample data using Liquibase.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-boot-tests[spring-boot-tests]
+
 == Spring Security and Spring Formatters
 
 This proof of concept tries to demostrate that exists an error during formatters registration in a Spring 4.3.3 application using Spring Boot if some `@Configuration` class extends the `WebSecurityConfigurerAdapter` abstract class.
 
 For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-security-and-formatters[spring-security-and-formatters]
 
-== Spring Boot Tests
 
-This proof of concept shows how to configure Spring Boot tests to create table schemas and include sample data using Liquibase.
-
-== Spring Boot Multimodule Tests
-
-This proof of concept shows how to configure Spring Boot tests in a multimodule maven project to create table schemas and include sample data using Liquibase.

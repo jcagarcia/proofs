@@ -22,6 +22,12 @@ This proof of concept shows how to configure Spring Boot tests to create table s
 
 For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-boot-tests[spring-boot-tests]
 
+== Spring Roo without AspectJ
+
+This proof of concept is a sample application that emulates an Spring Boot application generated with Spring Roo. However, instead of use .aj files for the ITDs, it uses .java files. This could solve some performance and support problems with some IDEs.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/spring-roo-no-aspect-java[spring-roo-no-aspect-java] 
+
 == Spring Security and Spring Formatters
 
 This proof of concept tries to demostrate that exists an error during formatters registration in a Spring 4.3.3 application using Spring Boot if some `@Configuration` class extends the `WebSecurityConfigurerAdapter` abstract class.

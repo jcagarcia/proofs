@@ -4,6 +4,12 @@ This repository contains a list of projects used to check functionalities, imple
 
 The following projects have been included:
 
+== Roles Division
+
+This PoC shows how to divide a project in different layers taking in account the different developer roles.
+
+For more details, see https://github.com/jcagarcia/proofs/tree/master/roles-division[roles-division]
+
 == Select2 with extra info
 
 This PoC shows how to include extra information in a select2 option element that has been generated using the Spring Roo tool.

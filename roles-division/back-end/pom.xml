@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- Spring IO Platform is the parent of the generated application to be able to
+      use Spring Boot and all its default configuration -->
+    <parent>
+        <groupId>io.spring.platform</groupId>
+        <artifactId>platform-bom</artifactId>
+        <version>Athens-RELEASE</version>
+        <relativePath/>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.jcagarcia.roles.division</groupId>
+    <artifactId>division</artifactId>
+    <version>1.0.0.BUILD-SNAPSHOT</version>
+    <name>division</name>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <roo.version>2.0.0.RC2</roo.version>
+        <java.product.version>8</java.product.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <asciidoclet.version>1.5.4</asciidoclet.version>
+        <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
+        <java.version>1.8</java.version>
+        <springlets.version>1.2.0.RC2</springlets.version>
+        <tracee.version>1.1.2</tracee.version>
+    </properties>
+
+    <modules>
+        <module>integration</module>
+        <module>service-api</module>
+        <module>service-impl</module>
+        <module>application</module>
+    </modules>
+    <repositories>
+        <!-- Maven Snapshots Repository -->
+        <repository>
+            <id>maven-snapshot-repository</id>
+            <name>Maven Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <!-- Spring Roo repository -->
+        <repository>
+            <id>spring-roo-repository</id>
+            <name>Spring Roo Repository</name>
+            <url>http://repo.spring.io/spring-roo</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.jcagarcia.roles.division</groupId>
+                <artifactId>model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jcagarcia.roles.division</groupId>
+                <artifactId>repository</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jcagarcia.roles.division</groupId>
+                <artifactId>service.api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jcagarcia.roles.division</groupId>
+                <artifactId>integration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jcagarcia.roles.division</groupId>
+                <artifactId>service.impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springlets</groupId>
+                <artifactId>springlets-data-jpa</artifactId>
+                <version>${springlets.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springlets</groupId>
+                <artifactId>springlets-data-commons</artifactId>
+                <version>${springlets.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springlets</groupId>
+                <artifactId>springlets-context</artifactId>
+                <version>${springlets.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.tracee.binding</groupId>
+                <artifactId>tracee-springmvc</artifactId>
+                <version>${tracee.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springlets</groupId>
+                <artifactId>springlets-boot-starter-web</artifactId>
+                <version>${springlets.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <!-- Compiler plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <useIncrementalCompilation>false</useIncrementalCompilation>
+                        <proc>none</proc>
+                    </configuration>
+                </plugin>
+
+                <!-- Surefire plugin configuration -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                </plugin>
+                <!-- Asciidoclet plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <additionalparam>
+                            --base-dir ${project.basedir}
+                            --attribute
+                            "projectName=${project.name}"
+                            --attribute
+                            "projectVersion=${project.version}"
+                            --attribute "doctype=book"
+                        </additionalparam>
+                        <dependencySourceIncludes>
+                            <dependencySourceInclude>${project.groupId}:*</dependencySourceInclude>
+                        </dependencySourceIncludes>
+                        <doclet>org.asciidoctor.Asciidoclet</doclet>
+                        <docletArtifact>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoclet</artifactId>
+                            <version>${asciidoclet.version}</version>
+                        </docletArtifact>
+                        <includeDependencySources>true</includeDependencySources>
+                        <linksource>true</linksource>
+                        <links>
+                            <link>http://docs.oracle.com/javase/${java.version}/docs/api/</link>
+                            <link>http://docs.oracle.com/javaee/${java.product.version}/api/</link>
+                            <link>http://docs.spring.io/spring-framework/docs/${spring.version}/javadoc-api/</link>
+                            <link>http://docs.spring.io/spring-boot/docs/${spring-boot.version}/api/</link>
+                            <link>http://fasterxml.github.io/jackson-core/javadoc/2.8/</link>
+                            <link>http://fasterxml.github.io/jackson-databind/javadoc/2.8</link>
+                            <link>http://cxf.apache.org/javadoc/latest-3.1.x/</link>
+                        </links>
+                        <overview>src/main/java/overview.adoc</overview>
+                        <show>private</show>
+                        <source>${java.version}</source>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>${start-class}</mainClass>
+                        <classifier>exec</classifier>
+                        <excludeDevtools>true</excludeDevtools>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

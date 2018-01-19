@@ -1,0 +1,20 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="vet-entityModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('VetsCollectionThymeleafController')},itemLink=${@linkBuilder.of('VetsItemThymeleafController')}">
+    <table id="vet-entity-table-item-to-remove" data-data-load-url="${collectionLink.to('datatablesByIdsIn')}">
+      <thead>
+        <tr>
+          <th data-data="firstName" data-th-text="#{label_vet_firstname}">firstName</th>
+          <th data-data="lastName" data-th-text="#{label_vet_lastname}">lastName</th>
+          <th data-data="specialty" data-th-text="#{label_vet_specialty}">specialty</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+          <td>firstName</td>
+          <td>lastName</td>
+          <td>specialty</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

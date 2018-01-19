@@ -1,0 +1,22 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="visits-detailModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('VetsItemVisitsThymeleafController')}">
+    <table id="visits-detail-table-items-to-remove-batch" data-parent-table="vet-entity-table" data-data-parent-id="${vet != null ? vet.id : ''}" data-data-load-url="${collectionLink.to('datatablesByIdsIn').with('vet', '_PARENTID_')}">
+      <thead>
+        <tr>
+              <th data-data="description" data-th-text="#{label_vet_visits_description}">description</th>
+              <th data-data="visitDate" data-th-text="#{label_vet_visits_visitdate}">visitDate</th>
+              <th data-data="pet" data-th-text="#{label_vet_visits_pet}">pet</th>
+              <th data-data="vet" data-th-text="#{label_vet_visits_vet}">vet</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+              <td>description</td>
+              <td>visitDate</td>
+              <td>pet</td>
+              <td>vet</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

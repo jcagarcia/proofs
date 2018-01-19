@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head id="head">
+
+    <title data-th-text="#{label_edit_entity(#{label_pet})}">
+    Edit Pet - Spring Roo application</title>
+
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.min.css}" />
+
+  </head>
+  
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content">
+
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('PetsCollectionThymeleafController')},itemLink=${@linkBuilder.of('PetsItemThymeleafController')}">
+
+          <h1 data-th-text="#{label_edit_entity(#{label_pet})}">Edit Pet</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${pet}" data-th-action="${itemLink.to('update').with('pet', pet.id)}">
+            <input type="hidden" name="_method" value="PUT" />
+            	<input type="hidden" name="version" data-th-value="*{version}" />
+
+            <!-- CONCURRENCY CONTROL -->
+            <div class="alert alert-warning" data-th-if="${concurrency}">
+              <h2 data-th-text="#{label_concurrency_title}">Warning! This record has been updated by an other user.</h2>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="concurrency" value="apply"> <span data-th-text="#{label_concurrency_apply}">Apply my changes anyway</span> <i><span data-th-text="#{label_concurrency_apply_info}">(discard all the changes applied by the other users).</span></i>
+                </input></label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="concurrency" value="discard" checked=""> <span data-th-text="#{label_concurrency_discard}">Discard all my changes and reload this record.</span>
+                </input></label>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary">Accept</button>
+            </br></div>
+            <!-- /CONCURRENCY CONTROL -->
+
+             <fieldset id="containerFields">
+              <legend class="sr-only" data-th-text="#{label_data_entity(#{label_pet})}">Pet data </legend>
+
+<div class="form-group has-error has-feedback" id="pet-sendreminders-field" data-z="8114df6a" data-th-classappend="${#fields.hasErrors('sendReminders')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label class="col-md-3 control-label" for="sendReminders" data-th-text="#{label_pet_sendreminders}">sendReminders</label>
+  <div class="col-md-6">
+    <div class="checkbox">
+      <input type="checkbox" data-th-field="*{sendReminders}" data-th-title="#{label_requiredfield}" data-toggle="tooltip" />
+       <span data-th-classappend="${#fields.hasErrors('sendReminders')}? 'form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('sendReminders')}" aria-hidden="true"></span>
+        <span id="sendReminders-error" class="help-block" data-th-if="${#fields.hasErrors('sendReminders')}" data-th-errors="*{sendReminders}">Error message.</span>
+    </div>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="88472854" id="pet-name-field" data-th-classappend="${#fields.hasErrors('name')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="name" class="col-md-3 control-label" data-th-text="#{label_pet_name}">name</label>
+  <div class="col-md-6">
+    <input id="name" name="name" data-th-value="*{{name}}" type="text" class="form-control" placeholder="name" data-th-placeholder="#{label_pet_name}" data-toggle="tooltip" aria-describedby="nameStatus" required="required" />
+      <span data-th-classappend="${#fields.hasErrors('name')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('name')}" aria-hidden="true"></span>
+      <span id="name-error" class="help-block" data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="e81cdd74" id="pet-weight-field" data-th-classappend="${#fields.hasErrors('weight')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="weight" class="col-md-3 control-label" data-th-text="#{label_pet_weight}">weight</label>
+  <div class="col-md-3">
+    <input id="weight" name="weight" data-th-value="*{{weight}}" type="text" class="form-control inputmask" placeholder="weight" data-th-placeholder="#{label_pet_weight}" data-toggle="tooltip" aria-describedby="weightStatus" data-inputmask-alias="numeric" data-inputmask-digits="2" required="required" min="0" />
+      <span data-th-classappend="${#fields.hasErrors('weight')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('weight')}" aria-hidden="true"></span>
+      <span id="weight-error" class="help-block" data-th-if="${#fields.hasErrors('weight')}" data-th-errors="*{weight}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="94374e74" id="pet-type-field" data-th-classappend="${#fields.hasErrors('type')}? 'has-error has-feedback'" data-th-class="form-group">
+    <label for="type" class="col-md-3 control-label" data-th-text="#{label_pet_type}">type</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{type}" class="form-control dropdown-select-simple" data-allow-clear="true" data-th-attr="data-placeholder=#{info_select_an_option}" required="required">
+         <option data-th-each="item : ${type}" data-th-value="${item}" data-th-text="${{item}}">Value</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('type')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('type')}" aria-hidden="true"></span>
+      <span id="type-error" class="help-block" data-th-if="${#fields.hasErrors('type')}" data-th-errors="*{type}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="ddfc3b4a" id="pet-owner-field" data-th-classappend="${#fields.hasErrors('owner')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('OwnersCollectionThymeleafController')}">
+    <label for="owner" class="col-md-3 control-label" data-th-text="#{label_pet_owner}">Owner</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{owner}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{owner} == null" data-th-value="*{owner.id}" data-th-text="*{{owner}}" selected="selected">Owner</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('owner')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('owner')}" aria-hidden="true"></span>
+      <span id="owner-error" class="help-block" data-th-if="${#fields.hasErrors('owner')}" data-th-errors="*{owner}">Error message.</span>
+    </div>
+</div>
+             </fieldset>
+
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="pull-left">
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                  </div>
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_save}">Save</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+   </div>
+   <!-- /CONTAINER -->
+
+   <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+   </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+
+    <!-- DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" data-th-src="@{/webjars/datetimepicker/build/jquery.datetimepicker.full.min.js}"></script>
+    <script src="../../static/public/js/datetimepicker-defaults.js" data-th-src="@{/public/js/datetimepicker-defaults.js}"></script>
+
+    <!-- jquery.inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js" data-th-src="@{/webjars/jquery.inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+        jQuery(document).ready(
+      	  function() {
+      	    Inputmask.extendAliases({
+      	      'numeric' : {
+      	         'groupSeparator' : /*[[#{label_inputmask_groupSeparator}]]*/'.',
+      	         'radixPoint' : /*[[#{label_inputmask_radixPoint}]]*/','
+      	       },
+      	       'currency' : {
+      	          'prefix' : /*[[#{label_inputmask_prefix}]]*/'',
+      	          'suffix' : /*[[#{label_inputmask_suffix}]]*/' €'
+      	        }
+      	    });
+      	 });
+       })(jQuery);
+    </script>
+    <script src="../../static/public/js/inputmask-defaults.js" data-th-src="@{/public/js/inputmask-defaults.js}"></script>
+
+    <!-- JQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js" data-th-src="@{/webjars/jquery-validation/dist/jquery.validate.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js" data-th-src="@{/webjars/jquery-validation/dist/additional-methods.min.js}">
+      </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_es.js" data-th-src="@{/webjars/jquery-validation/src/localization/messages_}+${#locale.language}+'.js'" data-th-if="${#locale.language} != 'en'">
+      </script>
+    <script src="../../static/public/js/validation-defaults.js" data-th-src="@{/public/js/validation-defaults.js}">
+      </script>
+    <script type="text/javascript" data-th-inline="javascript">
+      (function(jQuery) {
+         jQuery(document).ready(function() {
+      	   jQuery.extend( jQuery.validator.messages, {
+      	     'dateformat' : /*[[#{error_invalid_date}]]*/ 'Please enter a correct date/time',
+      	     'inputmask': /*[[#{error_invalid_maskValue}]]*/ 'Please enter a valid value',
+      	   });
+      	 });
+      })(jQuery);
+      </script>
+
+    </div>
+
+  </body>
+
+</html>

@@ -41,17 +41,23 @@ public class PetsItemThymeleafController {
             populateForm(model);
             return new ModelAndView("pets/edit");
         }
-        Pet savedPet = null;
-        try {
-            savedPet = getPetService().save(pet);
-        } catch (ObjectOptimisticLockingFailureException ex) { // Managing concurrency
-            // Populate the form with all the concurrency information
-            populateConcurrencyForm(model, pet);
-            // Return the edit view
-            return new ModelAndView("pets/edit");
-        }
-        UriComponents showURI = getItemLink().to(PetsItemThymeleafLinkFactory.SHOW).with("pet", savedPet.getId()).toUri();
-        return new ModelAndView("redirect:" + showURI.toUriString());
+
+        // Execute update using ConcurrencyTemplate
+        return new ConcurrencyTemplate(pet, model).execute(new ConcurrencyCallback() {
+            @Override
+            public ModelAndView save(Object item) {
+                Pet savedPet = getPetService().save((Pet) item);
+                UriComponents showURI = getItemLink().to(PetsItemThymeleafLinkFactory.SHOW).with("pet", savedPet.getId()).toUri();
+                return new ModelAndView("redirect:" + showURI.toUriString());
+            }
+
+            @Override
+            public ModelAndView exception(Object item, Model model) {
+                populateConcurrencyForm(model, (Pet) item);
+                return new ModelAndView("pets/edit");
+            }
+
+        });
     }
 
     /**

@@ -36,7 +36,7 @@
             	<input type="hidden" name="version" data-th-value="*{version}" />
 
             <!-- CONCURRENCY CONTROL -->
-            <div class="alert alert-warning" data-th-if="${concurrency}">
+            <div id="concurrency-control-form" class="alert alert-warning" data-th-if="${concurrency}" data-th-data-edit-form-url="${itemLink.to('editForm').with('pet', pet.id)}" data-th-data-new-version="${newVersion}" >
               <h2 data-th-text="#{label_concurrency_title}">Warning! This record has been updated by an other user.</h2>
               <div class="radio">
                 <label>

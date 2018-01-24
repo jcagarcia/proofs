@@ -1,11 +1,18 @@
 package org.springframework.roo.petclinic.web;
 
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
-
+/**
+ * Callback interface for concurrency code. Used with {@link ConcurrencyTemplate}'s
+ * {@code executeWithOcc} method, often as anonymous class within a method implementation.
+ *
+ * @param <T>
+ */
+@FunctionalInterface
 public interface ConcurrencyCallback<T> {
 
-    ModelAndView execute(Object item);
-
-    ModelAndView concurrencyException(Object item, Model model);
+    /**
+     * Gets called by {@link ConcurrencyTemplate#executeWithOcc(ConcurrencyCallback)}.
+     *
+     * @return a result object, or {@code null}
+     */
+    T executeWithOcc();
 }

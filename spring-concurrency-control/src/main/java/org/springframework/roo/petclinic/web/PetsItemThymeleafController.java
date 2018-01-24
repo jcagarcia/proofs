@@ -1,6 +1,5 @@
 package org.springframework.roo.petclinic.web;
 
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerType;
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.thymeleaf.annotations.RooThymeleaf;
@@ -22,7 +21,9 @@ import javax.validation.Valid;
  */
 @RooController(entity = Pet.class, type = ControllerType.ITEM)
 @RooThymeleaf
-public class PetsItemThymeleafController {
+public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
+
+    public static final String EDIT_VIEW_PATH = "pets/edit";
 
     /**
      * Update method that should manage concurrency
@@ -38,46 +39,48 @@ public class PetsItemThymeleafController {
         // Check if provided form contain errors
         if (result.hasErrors()) {
             populateForm(model);
-            return new ModelAndView("pets/edit");
+            return new ModelAndView(getEditViewPath());
         }
 
-        // Execute update using ConcurrencyTemplate
-        return new ConcurrencyTemplate(pet, model).execute(new ConcurrencyCallback() {
-            @Override
-            public ModelAndView execute(Object item) {
-                Pet savedPet = getPetService().save((Pet) item);
-                UriComponents showURI = getItemLink().to(PetsItemThymeleafLinkFactory.SHOW).with("pet", savedPet.getId()).toUri();
-                return new ModelAndView("redirect:" + showURI.toUriString());
-            }
-
-            @Override
-            public ModelAndView concurrencyException(Object item, Model model) {
-                populateConcurrencyForm(model, (Pet) item);
-                return new ModelAndView("pets/edit");
-            }
-
+        // Create Concurrency Spring Template to ensure that the following code will manage the
+        // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
+        // If some concurrency exception appears the template will manage it.
+        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).executeWithOcc(() -> {
+            return getPetService().save(pet);
         });
+
+        UriComponents showURI = getItemLink().to(PetsItemThymeleafLinkFactory.SHOW).with("pet", savedPet.getId()).toUri();
+        return new ModelAndView("redirect:" + showURI.toUriString());
     }
 
     /**
-     * Method to populate form with all the necessary elements to display the
-     * concurrency management.
+     * {@inheritDoc}
      *
-     * @param model
-     * @param entity
+     * @return
      */
-    private void populateConcurrencyForm(Model model, Pet entity) {
-        // First of all, populate the form with all the necessary things
-        populateForm(model);
+    @Override
+    public String getModelName() {
+        return "pet";
+    }
 
-        // Add concurrency attribute to the model to show the concurrency form
-        // in the current edit view
-        model.addAttribute("concurrency", true);
-        // Add the new version value to the model.
-        Pet existingPet = getPetService().findOne(entity.getId());
-        model.addAttribute("newVersion", existingPet.getVersion());
-        // Add the current pet values to maintain the values introduced by the user
-        model.addAttribute("pet", entity);
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    @Override
+    public String getEditViewPath() {
+        return EDIT_VIEW_PATH;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    @Override
+    public Integer getLastVersion(Pet record) {
+        return getPetService().findOne(record.getId()).getVersion();
     }
 
 

@@ -230,45 +230,6 @@ privileged aspect OwnersItemThymeleafController_Roo_Thymeleaf {
      * TODO Auto-generated method documentation
      * 
      * @param owner
-     * @param result
-     * @param version
-     * @param concurrencyControl
-     * @param model
-     * @return ModelAndView
-     */
-    @PutMapping(name = "update")
-    public ModelAndView OwnersItemThymeleafController.update(@Valid @ModelAttribute Owner owner, BindingResult result, @RequestParam("version") Integer version, @RequestParam(value = "concurrency", required = false, defaultValue = "") String concurrencyControl, Model model) {
-        // Check if provided form contain errors
-        if (result.hasErrors()) {
-            populateForm(model);
-            
-            return new ModelAndView("owners/edit");
-        }
-        // Concurrency control
-        Owner existingOwner = getOwnerService().findOne(owner.getId());
-        if(owner.getVersion() != existingOwner.getVersion() && StringUtils.isEmpty(concurrencyControl)){
-            populateForm(model);
-            model.addAttribute("owner", owner);
-            model.addAttribute("concurrency", true);
-            return new ModelAndView("owners/edit");
-        } else if(owner.getVersion() != existingOwner.getVersion() && "discard".equals(concurrencyControl)){
-            populateForm(model);
-            model.addAttribute("owner", existingOwner);
-            model.addAttribute("concurrency", false);
-            return new ModelAndView("owners/edit");
-        } else if(owner.getVersion() != existingOwner.getVersion() && "apply".equals(concurrencyControl)){
-            // Update the version field to be able to override the existing values
-            owner.setVersion(existingOwner.getVersion());
-        }
-        Owner savedOwner = getOwnerService().save(owner);
-        UriComponents showURI = getItemLink().to(OwnersItemThymeleafLinkFactory.SHOW).with("owner", savedOwner.getId()).toUri();
-        return new ModelAndView("redirect:" + showURI.toUriString());
-    }
-    
-    /**
-     * TODO Auto-generated method documentation
-     * 
-     * @param owner
      * @return ResponseEntity
      */
     @ResponseBody

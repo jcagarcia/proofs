@@ -30,12 +30,11 @@ public class PetsItemThymeleafController {
      * @param pet
      * @param result
      * @param version
-     * @param concurrencyControl
      * @param model
      * @return ModelAndView
      */
     @PutMapping(name = "update")
-    public ModelAndView update(@Valid @ModelAttribute Pet pet, BindingResult result, @RequestParam("version") Integer version, @RequestParam(value = "concurrency", required = false, defaultValue = "") String concurrencyControl, Model model) {
+    public ModelAndView update(@Valid @ModelAttribute Pet pet, BindingResult result, @RequestParam("version") Integer version, Model model) {
         // Check if provided form contain errors
         if (result.hasErrors()) {
             populateForm(model);
@@ -45,14 +44,14 @@ public class PetsItemThymeleafController {
         // Execute update using ConcurrencyTemplate
         return new ConcurrencyTemplate(pet, model).execute(new ConcurrencyCallback() {
             @Override
-            public ModelAndView save(Object item) {
+            public ModelAndView execute(Object item) {
                 Pet savedPet = getPetService().save((Pet) item);
                 UriComponents showURI = getItemLink().to(PetsItemThymeleafLinkFactory.SHOW).with("pet", savedPet.getId()).toUri();
                 return new ModelAndView("redirect:" + showURI.toUriString());
             }
 
             @Override
-            public ModelAndView exception(Object item, Model model) {
+            public ModelAndView concurrencyException(Object item, Model model) {
                 populateConcurrencyForm(model, (Pet) item);
                 return new ModelAndView("pets/edit");
             }

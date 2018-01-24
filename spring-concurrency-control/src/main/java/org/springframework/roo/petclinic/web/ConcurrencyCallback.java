@@ -5,7 +5,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface ConcurrencyCallback<T> {
 
-    ModelAndView save(Object item);
+    ModelAndView execute(Object item);
 
-    ModelAndView exception(Object item, Model model);
+    ModelAndView concurrencyException(Object item, Model model);
 }

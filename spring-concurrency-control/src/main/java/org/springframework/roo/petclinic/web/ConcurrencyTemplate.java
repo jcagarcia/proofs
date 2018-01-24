@@ -21,9 +21,9 @@ public class ConcurrencyTemplate {
 
     public ModelAndView execute(ConcurrencyCallback action) {
         try {
-            return action.save(item);
+            return action.execute(item);
         } catch (ObjectOptimisticLockingFailureException ex) {
-            return action.exception(item, model);
+            return action.concurrencyException(item, model);
         }
     }
 

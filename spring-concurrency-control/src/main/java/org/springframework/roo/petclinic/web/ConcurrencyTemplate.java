@@ -26,18 +26,6 @@ public class ConcurrencyTemplate<T> {
     private ConcurrencyManager<T> manager;
 
     /**
-     * The record that could produce the concurrency exception. Usually, this
-     * record is the entity that is being persisted.
-     */
-    private T record;
-
-    /**
-     * The Model of the View layer that contains all the necessary attributes to construct
-     * a valid form.
-     */
-    private Model model;
-
-    /**
      * Default constructor that receives all the necessary parameters.
      *
      * @param manager The element that will manage the concurrency behavior if some concurrency
@@ -46,10 +34,8 @@ public class ConcurrencyTemplate<T> {
      *                record is the entity that is being persisted.
      * @param model   The Model of the View layer that contains all the necessary attributes to construct a valid form.
      */
-    public ConcurrencyTemplate(ConcurrencyManager<T> manager, T record, Model model) {
+    public ConcurrencyTemplate(ConcurrencyManager<T> manager) {
         this.manager = manager;
-        this.record = record;
-        this.model = model;
     }
 
     /**
@@ -59,7 +45,7 @@ public class ConcurrencyTemplate<T> {
      * @param action The action that should be executed and that could produce a Concurrency Exception.
      * @return An object with the same type as the specified in the ConcurrencyTemplate constructor
      */
-    public T execute(ConcurrencyCallback<T> action) {
+    public T execute(T record, Model model, ConcurrencyCallback<T> action) {
         try {
             // Execute the provided action and return the result
             return action.doInConcurrency();
@@ -68,7 +54,7 @@ public class ConcurrencyTemplate<T> {
             // and throws a custom exception that contains all the information about
             // the view layer.
             LOGGER.debug(ex.getLocalizedMessage());
-            throw new ConcurrencyException(this.manager, this.record, this.model, ex);
+            throw new ConcurrencyException(this.manager, record, model, ex);
         }
     }
 }

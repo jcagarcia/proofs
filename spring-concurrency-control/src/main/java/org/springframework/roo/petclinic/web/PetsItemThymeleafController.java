@@ -1,5 +1,7 @@
 package org.springframework.roo.petclinic.web;
 
+import javax.validation.Valid;
+
 import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerType;
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.thymeleaf.annotations.RooThymeleaf;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponents;
 
-import javax.validation.Valid;
-
 /**
  * = PetsItemThymeleafController
  * <p>
@@ -24,6 +24,8 @@ import javax.validation.Valid;
 public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
 
     public static final String EDIT_VIEW_PATH = "pets/edit";
+    
+    private final ConcurrencyTemplate<Pet> concurrencyTemplate = new ConcurrencyTemplate<>(this);
 
     /**
      * Update method that should manage concurrency
@@ -45,7 +47,7 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).execute(() -> {
+        Pet savedPet = concurrencyTemplate.execute(pet, model, () -> {
             return getPetService().save(pet);
         });
 

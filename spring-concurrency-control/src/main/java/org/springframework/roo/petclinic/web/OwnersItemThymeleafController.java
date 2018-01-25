@@ -49,7 +49,7 @@ public class OwnersItemThymeleafController implements ConcurrencyManager<Owner> 
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Owner savedOwner = new ConcurrencyTemplate<Owner>(this, owner, model).executeWithOcc(() -> {
+        Owner savedOwner = new ConcurrencyTemplate<Owner>(this, owner, model).execute(() -> {
             return getOwnerService().save(owner);
         });
 

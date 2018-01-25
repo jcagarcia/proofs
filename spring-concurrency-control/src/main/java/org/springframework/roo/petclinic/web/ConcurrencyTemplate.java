@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
  * concurrency exception handling.
  *
  * @param <T> Generic type that indicates the type of element that should be returned after
- *            {@link #executeWithOcc(ConcurrencyCallback)} is called.
+ *            {@link #execute(ConcurrencyCallback)} is called.
  */
 public class ConcurrencyTemplate<T> {
 
@@ -59,10 +59,10 @@ public class ConcurrencyTemplate<T> {
      * @param action The action that should be executed and that could produce a Concurrency Exception.
      * @return An object with the same type as the specified in the ConcurrencyTemplate constructor
      */
-    public T executeWithOcc(ConcurrencyCallback<T> action) {
+    public T execute(ConcurrencyCallback<T> action) {
         try {
             // Execute the provided action and return the result
-            return action.executeWithOcc();
+            return action.doInConcurrency();
         } catch (ObjectOptimisticLockingFailureException ex) {
             // If some Concurrency Exception appears, log the error as debug level
             // and throws a custom exception that contains all the information about

@@ -45,7 +45,7 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).executeWithOcc(() -> {
+        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).execute(() -> {
             return getPetService().save(pet);
         });
 

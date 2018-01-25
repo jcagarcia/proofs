@@ -19,7 +19,8 @@ public class ConcurrencyException extends ObjectOptimisticLockingFailureExceptio
      * The controller that has throw the exception. This is necessary because the controller
      * is the only one who knows how to populate the edit form.
      */
-    private ConcurrencyManager manager;
+    @SuppressWarnings("rawtypes")
+	private ConcurrencyManager manager;
 
     /**
      * The record that has caused the concurrency exception.
@@ -43,7 +44,7 @@ public class ConcurrencyException extends ObjectOptimisticLockingFailureExceptio
      * @param model
      * @param ex
      */
-    public ConcurrencyException(ConcurrencyManager manager, Object record, Model model, ObjectOptimisticLockingFailureException ex) {
+    public <T> ConcurrencyException(ConcurrencyManager<T> manager, T record, Model model, ObjectOptimisticLockingFailureException ex) {
         super(ex.getPersistentClass(), ex.getIdentifier(), ex.getMessage(), ex.getCause());
         Assert.notNull(manager, "ERROR: You must provide a not null controller to throw this exception.");
         Assert.notNull(record, "ERROR: You must provide a not null record to throw this exception.");
@@ -53,7 +54,8 @@ public class ConcurrencyException extends ObjectOptimisticLockingFailureExceptio
         this.model = model;
     }
 
-    public ModelAndView populateAndGetFormView() {
+    @SuppressWarnings("unchecked")
+	public ModelAndView populateAndGetFormView() {
     	return manager.populateConcurrencyForm(record, model);
     }
 }

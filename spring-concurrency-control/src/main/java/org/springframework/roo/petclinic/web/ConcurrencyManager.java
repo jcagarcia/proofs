@@ -63,7 +63,7 @@ public interface ConcurrencyManager<T> {
      * @param entity
      * @return
      */
-    default ModelAndView populateConcurrencyForm(T entity, Model model) {
+    default ModelAndView populateAndGetFormView(T entity, Model model) {
 
         // Populate the form with all the necessary elements
         populateForm(model);

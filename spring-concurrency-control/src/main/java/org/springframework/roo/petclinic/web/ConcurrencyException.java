@@ -56,6 +56,6 @@ public class ConcurrencyException extends ObjectOptimisticLockingFailureExceptio
 
     @SuppressWarnings("unchecked")
 	public ModelAndView populateAndGetFormView() {
-    	return manager.populateConcurrencyForm(record, model);
+    	return manager.populateAndGetFormView(record, model);
     }
 }

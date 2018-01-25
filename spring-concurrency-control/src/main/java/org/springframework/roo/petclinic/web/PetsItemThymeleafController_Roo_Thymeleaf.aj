@@ -55,21 +55,7 @@ privileged aspect PetsItemThymeleafController_Roo_Thymeleaf {
      */
     private MethodLinkBuilderFactory<PetsCollectionThymeleafController> PetsItemThymeleafController.collectionLink;
     
-    /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param petService
-     * @param messageSource
-     * @param linkBuilder
-     */
-    @Autowired
-    public PetsItemThymeleafController.new(PetService petService, MessageSource messageSource, ControllerMethodLinkBuilderFactory linkBuilder) {
-        setPetService(petService);
-        setMessageSource(messageSource);
-        setItemLink(linkBuilder.of(PetsItemThymeleafController.class));
-        setCollectionLink(linkBuilder.of(PetsCollectionThymeleafController.class));
-    }
-
+    
     /**
      * TODO Auto-generated method documentation
      * 

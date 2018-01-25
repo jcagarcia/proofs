@@ -26,7 +26,7 @@ public class ConcurrencyExceptionManager {
      */
     @ExceptionHandler(ConcurrencyException.class)
     public ModelAndView concurrencyException(final ConcurrencyException ex) {
-        return ex.getManager().populateConcurrencyForm(ex.getRecord(), ex.getModel());
+        return ex.populateAndGetFormView();
     }
 
 

@@ -3,6 +3,7 @@ package org.springframework.roo.petclinic.web;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * = ConcurrencyException
@@ -12,7 +13,9 @@ import org.springframework.util.Assert;
  */
 public class ConcurrencyException extends ObjectOptimisticLockingFailureException {
 
-    /**
+	private static final long serialVersionUID = -5653262866014061733L;
+
+	/**
      * The controller that has throw the exception. This is necessary because the controller
      * is the only one who knows how to populate the edit form.
      */
@@ -50,30 +53,7 @@ public class ConcurrencyException extends ObjectOptimisticLockingFailureExceptio
         this.model = model;
     }
 
-    /**
-     * Getter for the manager private field
-     *
-     * @return
-     */
-    public ConcurrencyManager getManager() {
-        return manager;
-    }
-
-    /**
-     * Getter for the record private field
-     *
-     * @return
-     */
-    public Object getRecord() {
-        return record;
-    }
-
-    /**
-     * Getter for the model private field
-     *
-     * @return
-     */
-    public Model getModel() {
-        return model;
+    public ModelAndView populateAndGetFormView() {
+    	return manager.populateConcurrencyForm(record, model);
     }
 }

@@ -60,19 +60,8 @@ public class PetValidator implements Validator {
 
         // If the pet name is not empty, check if unique among all the pets
         String name = pet.getName();
-        if (!StringUtils.isEmpty(name)) {
-            // Obtain all the pets with the same name
-            List<Pet> pets = petService.findByName(name);
-            // Exclude this provided element from the result list to prevent
-            // wrong unique errors.
-            List<Pet> petsWithSameName = pets.stream().filter(
-                    e -> !Objects.equals(pet.getId(), e.getId())
-            ).collect(Collectors.toList());
-
-            // If exists one pet with the same name, reject an error for the field name
-            if (!petsWithSameName.isEmpty()) {
-                errors.rejectValue("name", "label_name_must_be_unique");
-            }
+        if (!StringUtils.isEmpty(name) && petService.exists(name, pet.getId())) {
+            errors.rejectValue("name", "label_name_must_be_unique");
         }
 
     }

@@ -3,6 +3,9 @@ import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerTy
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.thymeleaf.annotations.RooThymeleaf;
 import org.springframework.roo.petclinic.domain.Pet;
+import org.springframework.roo.petclinic.web.validators.PetValidator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  * = PetsCollectionThymeleafController
@@ -13,4 +16,18 @@ import org.springframework.roo.petclinic.domain.Pet;
 @RooController(entity = Pet.class, type = ControllerType.COLLECTION)
 @RooThymeleaf
 public class PetsCollectionThymeleafController {
+
+    /**
+     * Registering Binding validators to be able to use them during the Binding
+     * process.
+     *
+     * @param binder
+     */
+    @InitBinder
+    protected void initBinder(final WebDataBinder binder) {
+        // Creates a new PetValidator provinding a valid service
+        PetValidator petValidator = new PetValidator(getPetService());
+        // Register all the necessary validators
+        binder.addValidators(petValidator);
+    }
 }

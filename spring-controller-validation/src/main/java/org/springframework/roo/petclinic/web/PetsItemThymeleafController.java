@@ -4,7 +4,7 @@ import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerTy
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.thymeleaf.annotations.RooThymeleaf;
 import org.springframework.roo.petclinic.domain.Pet;
-import org.springframework.roo.petclinic.web.validators.PetValidator;
+import org.springframework.roo.petclinic.web.validators.GenericValidator;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -36,10 +36,10 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
      */
     @InitBinder
     protected void initBinder(final WebDataBinder binder) {
-        // Creates a new PetValidator provinding a valid service
-        PetValidator petValidator = new PetValidator(getPetService());
+        // Creates a new Generic Validator provinding a valid service
+        GenericValidator genericValidator = new GenericValidator(getPetService());
         // Register all the necessary validators
-        binder.addValidators(petValidator);
+        binder.addValidators(genericValidator);
     }
 
     /**
@@ -54,7 +54,7 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
     @PutMapping(name = "update")
     public ModelAndView update(@Valid @ModelAttribute Pet pet, BindingResult result, @RequestParam("version") Integer version, Model model) {
         // Check if provided form contain errors
-        // Because we've registered a PetValidator, the provided pet should be valid.
+        // Because we've registered a GenericValidator, the provided pet should be valid.
         // If not, all the errors will be displayed in the edit view.
         if (result.hasErrors()) {
             populateForm(model);

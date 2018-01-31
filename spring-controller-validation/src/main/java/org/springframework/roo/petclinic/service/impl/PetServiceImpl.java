@@ -1,12 +1,17 @@
 package org.springframework.roo.petclinic.service.impl;
 
 import org.springframework.roo.addon.layers.service.annotations.RooServiceImpl;
+import org.springframework.roo.petclinic.domain.MessageI18n;
 import org.springframework.roo.petclinic.domain.Pet;
 import org.springframework.roo.petclinic.service.api.PetService;
+import org.springframework.validation.ValidationUtils;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -16,7 +21,7 @@ import java.util.stream.Collectors;
  * TODO Auto-generated class documentation
  */
 @RooServiceImpl(service = PetService.class)
-public class PetServiceImpl implements PetService {
+public class PetServiceImpl implements PetService<Pet> {
 
     /**
      * {@inheritDoc}
@@ -54,5 +59,27 @@ public class PetServiceImpl implements PetService {
 
         return false;
 
+    }
+
+    /**
+     * Implements validate method to validate the Pet entity
+     *
+     * @param pet
+     * @return
+     */
+    @Override
+    public Map<String, List<MessageI18n>> validate(Pet pet) {
+
+        String name = pet.getName();
+        Map<String, List<MessageI18n>> messages = new HashMap<>();
+
+        // Check if name is empty
+        if(StringUtils.isEmpty(name)) {
+            messages.put("name", Arrays.asList(new MessageI18n("label_empty_name", null)));
+        }else if(exists(name, pet.getId())) {
+            messages.put("name", Arrays.asList(new MessageI18n("label_name_must_be_unique", null)));
+        }
+
+        return messages;
     }
 }

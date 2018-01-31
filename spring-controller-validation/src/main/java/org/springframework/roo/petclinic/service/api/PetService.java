@@ -11,7 +11,7 @@ import java.util.List;
  * TODO Auto-generated class documentation
  */
 @RooService(entity = Pet.class)
-public interface PetService {
+public interface PetService<T> extends ValidatorService<T> {
 
     /**
      * Defines an operation to obtain an entity by its name
@@ -31,4 +31,6 @@ public interface PetService {
      * @return true if exists some record with the same name
      */
     boolean exists(String name, Long... exclusions);
+
+
 }

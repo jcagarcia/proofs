@@ -1,9 +1,14 @@
 package org.springframework.roo.petclinic.web;
 
+import io.springlets.web.mvc.util.ControllerMethodLinkBuilderFactory;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerType;
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.thymeleaf.annotations.RooThymeleaf;
 import org.springframework.roo.petclinic.domain.Pet;
+import org.springframework.roo.petclinic.service.api.PetService;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,8 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponents;
-
-import javax.validation.Valid;
 
 /**
  * = PetsItemThymeleafController
@@ -24,6 +27,8 @@ import javax.validation.Valid;
 public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
 
     public static final String EDIT_VIEW_PATH = "pets/edit";
+    
+    private final ConcurrencyTemplate<Pet> concurrencyTemplate = new ConcurrencyTemplate<>(this);
 
     /**
      * Update method that should manage concurrency
@@ -45,7 +50,7 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).execute(() -> {
+        Pet savedPet = concurrencyTemplate.execute(pet, model, () -> {
             return getPetService().save(pet);
         });
 
@@ -84,4 +89,19 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
     }
 
 
+
+	/**
+     * TODO Auto-generated constructor documentation
+     * 
+     * @param petService
+     * @param messageSource
+     * @param linkBuilder
+     */
+    @Autowired
+    public PetsItemThymeleafController(PetService petService, MessageSource messageSource, ControllerMethodLinkBuilderFactory linkBuilder) {
+        setPetService(petService);
+        setMessageSource(messageSource);
+        setItemLink(linkBuilder.of(PetsItemThymeleafController.class));
+        setCollectionLink(linkBuilder.of(PetsCollectionThymeleafController.class));
+    }
 }

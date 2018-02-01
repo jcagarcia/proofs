@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * = ConcurrencyExceptionManager
  * <p>
- * Controller Advice that monitorizes all the existing @Controller's and catch
+ * Controller Advice that monitors all the existing @Controller's and catch
  * all the {@link ConcurrencyException} that could appear.
  */
 @ControllerAdvice
@@ -19,7 +19,7 @@ public class ConcurrencyExceptionManager {
      * that throws the exception to populate the concurrency form and to return a valid view.
      * <p>
      * The controller is the only one who knows how to manage the concurrency. Also, it allow us to
-     * customize the default behaviour of the concurrency exception feature.
+     * customize the default behavior of the concurrency exception feature.
      *
      * @param ex
      * @return

@@ -10,7 +10,7 @@ package org.springframework.roo.petclinic.web;
 public interface ConcurrencyCallback<T> {
 
     /**
-     * Gets called by {@link ConcurrencyTemplate#executeWithOcc(ConcurrencyCallback)}.
+     * Gets called by {@link ConcurrencyTemplate#execute(ConcurrencyCallback)}.
      *
      * @return a result object, or {@code null}
      */

@@ -55,7 +55,7 @@ public interface ConcurrencyManager<T> {
      * that the edit form is populate correctly when a Concurrency Exception appears.
      * <p>
      * This method has a default implementation for all the controllers that implements the ConcurrencyManager interface,
-     * so if you want the default behaviour when a Concurrency Exception appears, you don't need to implement it.
+     * so if you want the default behavior when a Concurrency Exception appears, you don't need to implement it.
      * <p>
      * If you want to modify this implementation and populate your form with your custom attributes, you must implement
      * the method again in your controller.
@@ -63,7 +63,7 @@ public interface ConcurrencyManager<T> {
      * @param entity
      * @return
      */
-    default ModelAndView populateConcurrencyForm(T entity, Model model) {
+    default ModelAndView populateAndGetFormView(T entity, Model model) {
 
         // Populate the form with all the necessary elements
         populateForm(model);

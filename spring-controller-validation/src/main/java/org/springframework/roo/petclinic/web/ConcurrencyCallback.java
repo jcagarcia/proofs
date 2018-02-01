@@ -14,5 +14,5 @@ public interface ConcurrencyCallback<T> {
      *
      * @return a result object, or {@code null}
      */
-    T doInConcurrency();
+    T doInConcurrency() throws Exception;
 }

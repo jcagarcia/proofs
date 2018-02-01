@@ -55,6 +55,23 @@ public class ConcurrencyTemplate<T> {
             // the view layer.
             LOGGER.debug(ex.getLocalizedMessage());
             throw new ConcurrencyException(this.manager, record, model, ex);
+        } catch(Exception e){
+            throw new ConcurrencyTemplateException(e);
+        }
+    }
+
+    /**
+     * Custom exception to manage concurrency template errors
+     */
+    public static class ConcurrencyTemplateException extends RuntimeException{
+
+        /**
+         * Default constructor
+         *
+         * @param e
+         */
+        public ConcurrencyTemplateException(Exception e) {
+            super(e);
         }
     }
 }

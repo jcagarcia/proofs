@@ -85,6 +85,7 @@ public class MyMapTopComponent extends TopComponent {
 
         setLayout(new BorderLayout());
         
+                
         try {
 
             //MapPanel:
@@ -132,6 +133,7 @@ public class MyMapTopComponent extends TopComponent {
             mapHandler.add(shapeLayer);
 
             add(mapPanel.getMapBean(), BorderLayout.CENTER);
+            
 
         } catch (MultipleSoloMapComponentException msmce) {
         }
@@ -173,7 +175,7 @@ public class MyMapTopComponent extends TopComponent {
             // Create new task
             Runnable runnable = new Runnable() {
 
-                private final int NUM = 30000;
+                private final int NUM = 10000;
 
                 @Override
                 public void run() {

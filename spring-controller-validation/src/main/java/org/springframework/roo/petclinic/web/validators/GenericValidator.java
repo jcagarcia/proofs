@@ -17,7 +17,7 @@ import java.util.Map;
  * Implementation of the {@link Validator} interface to be able to validate
  * all the entities during the Binding process.
  */
-public class GenericValidator implements Validator {
+public class GenericValidator<T> implements Validator {
 
     /**
      * The service used to validate
@@ -30,9 +30,9 @@ public class GenericValidator implements Validator {
      *
      * @param validatorService
      */
-    public GenericValidator(ValidatorService validatorService) {
+    public GenericValidator(T validatorService) {
         Assert.notNull(validatorService, "ERROR: You must provide a valid Validator service.");
-        this.validatorService = validatorService;
+        this.validatorService = (ValidatorService) validatorService;
     }
 
     /**
@@ -54,7 +54,7 @@ public class GenericValidator implements Validator {
         Map<String, List<MessageI18n>> messages = validatorService.validate(obj);
         messages.forEach((k,v)-> {
             v.forEach((e) -> {
-                errors.rejectValue(k, e.label);
+                errors.rejectValue(k, e.label, e.values, "");
             });
         });
     }

@@ -75,9 +75,9 @@ public class PetServiceImpl implements PetService<Pet> {
 
         // Check if name is empty
         if(StringUtils.isEmpty(name)) {
-            messages.put("name", Arrays.asList(new MessageI18n("label_empty_name", null)));
+            messages.put("name", Arrays.asList(new MessageI18n("label_empty_name")));
         }else if(exists(name, pet.getId())) {
-            messages.put("name", Arrays.asList(new MessageI18n("label_name_must_be_unique", null)));
+            messages.put("name", Arrays.asList(new MessageI18n("label_name_must_be_unique", name)));
         }
 
         return messages;

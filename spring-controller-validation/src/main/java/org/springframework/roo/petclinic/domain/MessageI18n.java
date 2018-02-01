@@ -24,7 +24,7 @@ public final class MessageI18n {
      * @param label
      * @param values
      */
-    public MessageI18n(String label, Object[] values) {
+    public MessageI18n(String label, Object... values) {
         this.label = label;
         this.values = values;
     }

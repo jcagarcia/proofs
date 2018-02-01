@@ -1,8 +1,6 @@
 package org.springframework.roo.petclinic.web.validators;
 
 import org.springframework.roo.petclinic.domain.MessageI18n;
-import org.springframework.roo.petclinic.domain.Pet;
-import org.springframework.roo.petclinic.service.api.PetService;
 import org.springframework.roo.petclinic.service.api.ValidatorService;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;

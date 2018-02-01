@@ -61,21 +61,7 @@ privileged aspect OwnersItemThymeleafController_Roo_Thymeleaf {
      */
     private MethodLinkBuilderFactory<OwnersCollectionThymeleafController> OwnersItemThymeleafController.collectionLink;
     
-    /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param ownerService
-     * @param messageSource
-     * @param linkBuilder
-     */
-    @Autowired
-    public OwnersItemThymeleafController.new(OwnerService ownerService, MessageSource messageSource, ControllerMethodLinkBuilderFactory linkBuilder) {
-        setOwnerService(ownerService);
-        setMessageSource(messageSource);
-        setItemLink(linkBuilder.of(OwnersItemThymeleafController.class));
-        setCollectionLink(linkBuilder.of(OwnersCollectionThymeleafController.class));
-    }
-
+    
     /**
      * TODO Auto-generated method documentation
      * 

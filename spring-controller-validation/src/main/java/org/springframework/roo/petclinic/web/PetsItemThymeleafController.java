@@ -27,6 +27,8 @@ import javax.validation.Valid;
 public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
 
     public static final String EDIT_VIEW_PATH = "pets/edit";
+    
+    private final ConcurrencyTemplate<Pet> concurrencyTemplate = new ConcurrencyTemplate<>(this);
 
     /**
      * Registering Binding validators to be able to use them during the Binding
@@ -54,8 +56,6 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
     @PutMapping(name = "update")
     public ModelAndView update(@Valid @ModelAttribute Pet pet, BindingResult result, @RequestParam("version") Integer version, Model model) {
         // Check if provided form contain errors
-        // Because we've registered a GenericValidator, the provided pet should be valid.
-        // If not, all the errors will be displayed in the edit view.
         if (result.hasErrors()) {
             populateForm(model);
             return new ModelAndView(getEditViewPath());
@@ -64,7 +64,7 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Pet savedPet = new ConcurrencyTemplate<Pet>(this, pet, model).execute(() -> {
+        Pet savedPet = concurrencyTemplate.execute(pet, model, () -> {
             return getPetService().save(pet);
         });
 
@@ -103,4 +103,19 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
     }
 
 
+
+	/**
+     * TODO Auto-generated constructor documentation
+     * 
+     * @param petService
+     * @param messageSource
+     * @param linkBuilder
+     */
+    @Autowired
+    public PetsItemThymeleafController(PetService petService, MessageSource messageSource, ControllerMethodLinkBuilderFactory linkBuilder) {
+        setPetService(petService);
+        setMessageSource(messageSource);
+        setItemLink(linkBuilder.of(PetsItemThymeleafController.class));
+        setCollectionLink(linkBuilder.of(PetsCollectionThymeleafController.class));
+    }
 }

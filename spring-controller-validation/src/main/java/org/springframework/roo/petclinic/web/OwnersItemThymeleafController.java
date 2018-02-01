@@ -29,6 +29,8 @@ import javax.validation.Valid;
 public class OwnersItemThymeleafController implements ConcurrencyManager<Owner> {
 
     public static final String EDIT_VIEW_PATH = "owners/edit";
+    
+    private final ConcurrencyTemplate<Owner> concurrencyTemplate = new ConcurrencyTemplate<>(this);
 
 
     /**
@@ -67,7 +69,7 @@ public class OwnersItemThymeleafController implements ConcurrencyManager<Owner> 
         // Create Concurrency Spring Template to ensure that the following code will manage the
         // possible concurrency exceptions that appears and execute the provided coded inside the Spring template.
         // If some concurrency exception appears the template will manage it.
-        Owner savedOwner = new ConcurrencyTemplate<Owner>(this, owner, model).execute(() -> {
+        Owner savedOwner = concurrencyTemplate.execute(owner, model, () -> {
             return getOwnerService().save(owner);
         });
 
@@ -105,4 +107,19 @@ public class OwnersItemThymeleafController implements ConcurrencyManager<Owner> 
         return getOwnerService().findOne(record.getId()).getVersion();
     }
 
+
+	/**
+     * TODO Auto-generated constructor documentation
+     * 
+     * @param ownerService
+     * @param messageSource
+     * @param linkBuilder
+     */
+    @Autowired
+    public OwnersItemThymeleafController(OwnerService ownerService, MessageSource messageSource, ControllerMethodLinkBuilderFactory linkBuilder) {
+        setOwnerService(ownerService);
+        setMessageSource(messageSource);
+        setItemLink(linkBuilder.of(OwnersItemThymeleafController.class));
+        setCollectionLink(linkBuilder.of(OwnersCollectionThymeleafController.class));
+    }
 }

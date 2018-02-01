@@ -11,7 +11,7 @@ import java.util.List;
  * TODO Auto-generated class documentation
  */
 @RooService(entity = Pet.class)
-public interface PetService<T> extends ValidatorService<T> {
+public interface PetService extends ValidatorService<Pet> {
 
     /**
      * Defines an operation to obtain an entity by its name

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * TODO Auto-generated class documentation
  */
 @RooServiceImpl(service = PetService.class)
-public class PetServiceImpl implements PetService<Pet> {
+public class PetServiceImpl implements PetService {
 
     /**
      * {@inheritDoc}

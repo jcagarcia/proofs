@@ -37,9 +37,9 @@ public class PetsItemThymeleafController implements ConcurrencyManager<Pet> {
     @InitBinder
     protected void initBinder(final WebDataBinder binder) {
         // Creates a new Generic Validator provinding a valid service
-        GenericValidator genericValidator = new GenericValidator(getPetService());
+        GenericValidator petValidator = new GenericValidator(Pet.class, getPetService());
         // Register all the necessary validators
-        binder.addValidators(genericValidator);
+        binder.addValidators(petValidator);
     }
 
     /**

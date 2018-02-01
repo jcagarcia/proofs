@@ -12,7 +12,7 @@ import java.util.List;
  *
  */
 @RooService(entity = Owner.class)
-public interface OwnerService<T> extends ValidatorService<T>{
+public interface OwnerService extends ValidatorService<Owner>{
 
     /**
      * Defines an operation to obtain an entity by its name

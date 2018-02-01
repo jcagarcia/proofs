@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @RooServiceImpl(service = OwnerService.class)
 @RooSecurityAuthorizations(authorizations = { @RooSecurityAuthorization(method = "delete", parameters = { Owner.class }, roles = "ADMIN"), @RooSecurityAuthorization(method = "delete", parameters = { Iterable.class }, roles = "ADMIN") })
-public class OwnerServiceImpl implements OwnerService<Owner> {
+public class OwnerServiceImpl implements OwnerService {
 
 
     /**

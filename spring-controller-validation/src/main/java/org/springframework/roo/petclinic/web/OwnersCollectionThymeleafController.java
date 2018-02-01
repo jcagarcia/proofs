@@ -26,8 +26,8 @@ public class OwnersCollectionThymeleafController {
     @InitBinder
     protected void initBinder(final WebDataBinder binder) {
         // Creates a new Generic Validator provinding a valid service
-        GenericValidator genericValidator = new GenericValidator(getOwnerService());
+        GenericValidator ownerValidator = new GenericValidator(Owner.class, getOwnerService());
         // Register all the necessary validators
-        binder.addValidators(genericValidator);
+        binder.addValidators(ownerValidator);
     }
 }

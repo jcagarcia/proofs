@@ -20,6 +20,11 @@ import java.util.Map;
 public class GenericValidator<T> implements Validator {
 
     /**
+     * The class that supports the validation
+     */
+    private Class<?> clazz;
+
+    /**
      * The service used to validate
      */
     private ValidatorService validatorService;
@@ -30,17 +35,20 @@ public class GenericValidator<T> implements Validator {
      *
      * @param validatorService
      */
-    public GenericValidator(T validatorService) {
+    public GenericValidator(Class<?> clazz, T validatorService) {
+        Assert.notNull(clazz, "ERROR: You must provide a valid Class type");
         Assert.notNull(validatorService, "ERROR: You must provide a valid Validator service.");
+        this.clazz = clazz;
         this.validatorService = (ValidatorService) validatorService;
     }
 
     /**
-     * This Validator validates all type of instances
+     * This Validator validates the type of class defined in
+     * the constructor.
      */
     @Override
     public boolean supports(Class<?> clazz) {
-        return true;
+        return clazz.equals(this.clazz);
     }
 
     /**

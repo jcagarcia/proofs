@@ -27,8 +27,8 @@ public class PetsCollectionThymeleafController {
     @InitBinder
     protected void initBinder(final WebDataBinder binder) {
         // Creates a new GenericValidator provinding a valid service
-        GenericValidator genericValidator = new GenericValidator(getPetService());
+        GenericValidator petValidator = new GenericValidator(Pet.class, getPetService());
         // Register all the necessary validators
-        binder.addValidators(genericValidator);
+        binder.addValidators(petValidator);
     }
 }

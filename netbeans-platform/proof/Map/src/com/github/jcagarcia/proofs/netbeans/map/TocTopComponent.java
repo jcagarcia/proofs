@@ -15,27 +15,13 @@ import org.openide.util.NbBundle.Messages;
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(
-        dtd = "-//com.github.jcagarcia.proofs.netbeans.map//Toc//EN",
-        autostore = false
-)
-@TopComponent.Description(
-        preferredID = "TocTopComponent",
-        //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS
-)
-@TopComponent.Registration(mode = "leftSlidingSide", openAtStartup = true)
+@ConvertAsProperties(dtd = "-//com.github.jcagarcia.proofs.netbeans.map//Toc//EN",autostore = false)
+@TopComponent.Description(preferredID = "TocTopComponent", persistenceType = TopComponent.PERSISTENCE_ALWAYS)
+@TopComponent.Registration(mode = "explorer", openAtStartup = true)
 @ActionID(category = "Window", id = "com.github.jcagarcia.proofs.netbeans.map.TocTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_TocAction",
-        preferredID = "TocTopComponent"
-)
-@Messages({
-    "CTL_TocAction=Toc",
-    "CTL_TocTopComponent=Toc Window",
-    "HINT_TocTopComponent=This is a Toc window"
-})
+@TopComponent.OpenActionRegistration(displayName = "#CTL_TocAction",preferredID = "TocTopComponent")
+@Messages({"CTL_TocAction=Toc","CTL_TocTopComponent=Toc Window","HINT_TocTopComponent=This is a Toc window"})
 public final class TocTopComponent extends TopComponent {
     
     private UndoRedo.Manager manager = new UndoRedo.Manager();

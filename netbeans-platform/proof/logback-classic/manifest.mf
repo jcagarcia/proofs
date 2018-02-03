@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+AutoUpdate-Show-In-Client: true
+OpenIDE-Module: dfsdf
+OpenIDE-Module-Localizing-Bundle: dfsdf/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

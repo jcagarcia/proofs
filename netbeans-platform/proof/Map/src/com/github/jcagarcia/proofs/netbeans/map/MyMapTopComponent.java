@@ -13,7 +13,6 @@ import com.bbn.openmap.MultipleSoloMapComponentException;
 import com.bbn.openmap.event.MapMouseEvent;
 import com.bbn.openmap.event.MapMouseListener;
 import com.bbn.openmap.event.SelectMouseMode;
-import com.bbn.openmap.geo.OMGeo;
 import com.bbn.openmap.gui.BasicMapPanel;
 import com.bbn.openmap.gui.MapPanel;
 import com.bbn.openmap.layer.shape.ShapeLayer;
@@ -22,20 +21,16 @@ import com.bbn.openmap.proj.Projection;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.util.Collections;
 import java.util.Properties;
 import java.util.logging.Logger;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.JButton;
 import org.netbeans.api.progress.ProgressHandle;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
 import org.openide.awt.StatusDisplayer;
-import org.openide.awt.UndoRedo;
 import org.openide.util.Cancellable;
 import org.openide.util.RequestProcessor;
 import org.openide.util.Task;
@@ -44,22 +39,11 @@ import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 import org.openide.windows.TopComponent;
 
-@TopComponent.Description(
-        preferredID = "MyMapTopComponent",
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS)
-@TopComponent.Registration(
-        mode = "editor",
-        openAtStartup = true)
-@ActionID(
-        category = "Window",
-        id = "com.github.jcagarcia.proofs.netbeans.map.MyMapTopComponent")
-@ActionReferences({
-    @ActionReference(
-            path = "Menu/Window",
-            position = 0)
-})
-@TopComponent.OpenActionRegistration(
-        displayName = "Map")
+@TopComponent.Description(preferredID = "MyMapTopComponent", persistenceType = TopComponent.PERSISTENCE_ALWAYS)
+@TopComponent.Registration(mode = "editor", openAtStartup = true)
+@ActionID(category = "Window", id = "com.github.jcagarcia.proofs.netbeans.map.MyMapTopComponent")
+@ActionReferences({@ActionReference(path = "Menu/Window", position = 0)})
+@TopComponent.OpenActionRegistration(displayName = "Map")
 public class MyMapTopComponent extends TopComponent {
 
     private final InstanceContent ic = new InstanceContent();
@@ -68,28 +52,19 @@ public class MyMapTopComponent extends TopComponent {
     private final static RequestProcessor RP = new RequestProcessor("interruptible tasks", 200, true);
     private final static Logger LOG = Logger.getLogger(MyMapTopComponent.class.getName());
 
-    private RequestProcessor.Task task = null;
-    
-    // Undo Redo manager
-    private UndoRedo.Manager manager = new UndoRedo.Manager();
-
-    @Override
-    public UndoRedo getUndoRedo() {
-        return manager;
-    }
-    
-    
+    private RequestProcessor.Task task = null;   
 
     public MyMapTopComponent() {
+              
         setDisplayName("Map");
 
-        setLayout(new BorderLayout());
-        
+        setLayout(new BorderLayout());  
                 
         try {
 
             //MapPanel:
             MapPanel mapPanel = new BasicMapPanel();
+            
 
             //MapHandler:
             MapHandler mapHandler = mapPanel.getMapHandler();
@@ -131,7 +106,7 @@ public class MyMapTopComponent extends TopComponent {
 
             //Assign ShapeLayer to MapHandler:
             mapHandler.add(shapeLayer);
-
+            
             add(mapPanel.getMapBean(), BorderLayout.CENTER);
             
 

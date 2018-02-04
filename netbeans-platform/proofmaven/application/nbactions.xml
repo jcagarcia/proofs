@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>nbm-application</packaging>
+            </packagings>
+            <goals>
+                <goal>nbm:cluster-app</goal>
+                <goal>nbm:run-platform</goal>
+                
+            </goals>
+            <properties>
+                <run.args.extra>-J-Xmx768m</run.args.extra>
+                <run.jvmargs>-Xmx768m</run.jvmargs>
+            </properties>
+        </action>
+    </actions>

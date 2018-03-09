@@ -1,0 +1,13 @@
+type Travel {
+    id: ID!
+    name: String!
+    country: String
+}
+
+type Query {
+    findAllTravels: [Travel]
+}
+
+schema {
+    query: Query
+}

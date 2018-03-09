@@ -19,7 +19,7 @@ public class Travel {
      * Identifier of a travel
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**
@@ -32,6 +32,24 @@ public class Travel {
      * The country destination
      */
     private String country;
+
+    /**
+     * Default empty constructor
+     */
+    public Travel() {
+        // Nothing to do here
+    }
+
+    /**
+     * Constructor that receives all the necessary parameters
+     *
+     * @param name
+     * @param country
+     */
+    public Travel(String name, String country) {
+        setName(name);
+        setCountry(country);
+    }
 
     // Getters and setters
 

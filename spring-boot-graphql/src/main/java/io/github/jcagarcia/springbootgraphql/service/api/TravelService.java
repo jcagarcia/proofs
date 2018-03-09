@@ -15,4 +15,13 @@ public interface TravelService {
      * @return
      */
     List<Travel> findAll();
+
+    /**
+     * Method to create a new Travel
+     *
+     * @param name
+     * @param country
+     * @return
+     */
+    Travel create(String name, String country);
 }

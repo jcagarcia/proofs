@@ -8,6 +8,11 @@ type Query {
     findAllTravels: [Travel]
 }
 
+type Mutation {
+    create(name: String!, country: String!) : Travel!
+}
+
 schema {
     query: Query
+    mutation: Mutation
 }

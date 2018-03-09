@@ -29,4 +29,16 @@ public class TravelServiceImpl implements TravelService {
     public List<Travel> findAll() {
         return travelRepository.findAll();
     }
+
+    /**
+     * Method that saves a new travel
+     *
+     * @param name
+     * @param country
+     * @return
+     */
+    @Override
+    public Travel create(String name, String country) {
+        return travelRepository.save(new Travel(name, country));
+    }
 }

@@ -1,7 +1,9 @@
 package io.github.jcagarcia.springbootgraphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import io.github.jcagarcia.springbootgraphql.model.Layer;
 import io.github.jcagarcia.springbootgraphql.model.Travel;
+import io.github.jcagarcia.springbootgraphql.service.api.LayerService;
 import io.github.jcagarcia.springbootgraphql.service.api.TravelService;
 
 /**
@@ -15,12 +17,19 @@ public class Mutation implements GraphQLMutationResolver {
     private TravelService travelService;
 
     /**
+     * The service to manage all the layers
+     */
+    private LayerService layerService;
+
+    /**
      * Default constructor
      *
      * @param travelService
+     * @param layerService
      */
-    public Mutation(TravelService travelService) {
+    public Mutation(TravelService travelService, LayerService layerService) {
         this.travelService = travelService;
+        this.layerService = layerService;
     }
 
     /**
@@ -30,7 +39,18 @@ public class Mutation implements GraphQLMutationResolver {
      * @param country
      * @return
      */
-    public Travel create(String name, String country){
+    public Travel createTravel(String name, String country){
         return travelService.create(name, country);
+    }
+
+    /**
+     * Creates a new Layer
+     *
+     * @param travel
+     * @param name
+     * @return
+     */
+    public Layer createLayer(Long travel, String name){
+        return layerService.create(travel, name);
     }
 }

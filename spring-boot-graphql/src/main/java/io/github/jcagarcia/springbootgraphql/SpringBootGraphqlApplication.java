@@ -2,6 +2,7 @@ package io.github.jcagarcia.springbootgraphql;
 
 import io.github.jcagarcia.springbootgraphql.resolvers.Mutation;
 import io.github.jcagarcia.springbootgraphql.resolvers.Query;
+import io.github.jcagarcia.springbootgraphql.service.api.LayerService;
 import io.github.jcagarcia.springbootgraphql.service.api.TravelService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,21 +22,23 @@ public class SpringBootGraphqlApplication {
      * Register the Query component in the Spring Context
      *
      * @param travelService
+     * @param layerService
      * @return
      */
     @Bean
-    public Query query(TravelService travelService) {
-        return new Query(travelService);
+    public Query query(TravelService travelService, LayerService layerService) {
+        return new Query(travelService, layerService);
     }
 
     /**
      * Register the Mutation component in the Spring Context
      *
      * @param travelService
+     * @param layerService
      * @return
      */
     @Bean
-    public Mutation mutation(TravelService travelService) {
-        return new Mutation(travelService);
+    public Mutation mutation(TravelService travelService, LayerService layerService) {
+        return new Mutation(travelService, layerService);
     }
 }

@@ -2,14 +2,23 @@ type Travel {
     id: ID!
     name: String!
     country: String
+    layers: [Layer]
+}
+
+type Layer {
+    id: ID!
+    name: String!
+    travel: Travel
 }
 
 type Query {
     findAllTravels: [Travel]
+    findAllLayers: [Layer]
 }
 
 type Mutation {
-    create(name: String!, country: String!) : Travel!
+    createTravel(name: String!, country: String!) : Travel!
+    createLayer(travel: Int!, name: String! ) : Layer!
 }
 
 schema {

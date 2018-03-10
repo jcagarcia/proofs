@@ -1,13 +1,15 @@
 package io.github.jcagarcia.springbootgraphql.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that represents a Travel
@@ -32,6 +34,12 @@ public class Travel {
      * The country destination
      */
     private String country;
+
+    /**
+     * All the layers in this Travel
+     */
+    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "travel")
+    private Set<Layer> layers = new HashSet<Layer>();
 
     /**
      * Default empty constructor
@@ -76,4 +84,14 @@ public class Travel {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public Set<Layer> getLayers() {
+        return layers;
+    }
+
+    public void setLayers(Set<Layer> layers) {
+        this.layers = layers;
+    }
+
+
 }

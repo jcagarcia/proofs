@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+  <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_owner})}|">Show Owner - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content" data-th-object="${owner}">
+        <div class="container-fluid content">
+
+          <!-- CONTENT -->
+          <h1 data-th-text="#{label_show_entity(#{label_owner})}">Show Owner</h1>
+
+            <div id="mainEntityFieldSet">
+              <h2 data-th-text="#{label_data_entity(#{label_owner})}">Owner data</h2>
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="owner-firstname-field" data-z="4b629416">
+            	      <strong data-th-text="#{label_owner_firstname}">firstName</strong>
+                    <span data-th-text="*{{firstName}}">firstNameValue</span>
+         	        </li>
+                  <li id="owner-lastname-field" data-z="6bf77688">
+            	      <strong data-th-text="#{label_owner_lastname}">lastName</strong>
+                    <span data-th-text="*{{lastName}}">lastNameValue</span>
+         	        </li>
+                  <li id="owner-address-field" data-z="cee10696">
+            	      <strong data-th-text="#{label_owner_address}">address</strong>
+                    <span data-th-text="*{{address}}">addressValue</span>
+         	        </li>
+                  <li id="owner-city-field" data-z="306245a8">
+            	      <strong data-th-text="#{label_owner_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="owner-telephone-field" data-z="8050f2d6">
+            	      <strong data-th-text="#{label_owner_telephone}">telephone</strong>
+                    <span data-th-text="*{{telephone}}">telephoneValue</span>
+         	        </li>
+                  <li id="owner-homepage-field" data-z="378ef0e8">
+            	      <strong data-th-text="#{label_owner_homepage}">homePage</strong>
+                    <span data-th-text="*{{homePage}}">homePageValue</span>
+         	        </li>
+                  <li id="owner-email-field" data-z="4f007356">
+            	      <strong data-th-text="#{label_owner_email}">email</strong>
+                    <span data-th-text="*{{email}}">emailValue</span>
+         	        </li>
+                  <li id="owner-birthday-field" data-z="853efec8">
+            	      <strong data-th-text="#{label_owner_birthday}">birthDay</strong>
+                    <span data-th-text="*{{birthDay}}">birthDayValue</span>
+         	        </li>
+                  <li id="owner-createddate-field" data-z="df2f72f6">
+            	      <strong data-th-text="#{label_owner_createddate}">createdDate</strong>
+                    <span data-th-text="*{{createdDate}}">createdDateValue</span>
+         	        </li>
+                  <li id="owner-createdby-field" data-z="cfbfab96">
+            	      <strong data-th-text="#{label_owner_createdby}">createdBy</strong>
+                    <span data-th-text="*{{createdBy}}">createdByValue</span>
+         	        </li>
+                  <li id="owner-modifieddate-field" data-z="74bb1748">
+            	      <strong data-th-text="#{label_owner_modifieddate}">modifiedDate</strong>
+                    <span data-th-text="*{{modifiedDate}}">modifiedDateValue</span>
+         	        </li>
+                  <li id="owner-modifiedby-field" data-z="4e2c3c68">
+            	      <strong data-th-text="#{label_owner_modifiedby}">modifiedBy</strong>
+                    <span data-th-text="*{{modifiedBy}}">modifiedByValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+
+          <div class="clearfix">
+            <div class="pull-right">
+             <a id="Owner_edit" href="edit.html" class="btn btn-primary" data-th-title="#{label_goEdit}" data-th-href="${@linkBuilder.of('OwnersItemThymeleafController').to('editForm').with('owner', owner.id)}" data-th-text="#{label_edit}">Edit</a>
+            </div>
+          </div>
+
+          <!-- details -->
+        <hr>
+        <div id="details-level-1">
+            <ul class="nav nav-tabs" id="nav-tabs">
+                <li class="active">
+                  <a id="pets-detail-table-tab" data-toggle="tab" href="#detail-pets-detail" data-z="1bbbd492">Pets</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="tab-content">
+              <div id="detail-pets-detail" class="tab-pane active">
+                <!--START DETAIL TABLE-->
+                <div class="table-responsive" data-th-with="detailCollectionLink=${@linkBuilder.of('OwnersItemPetsThymeleafController')},detailItemLink=${@linkBuilder.of('PetsItemThymeleafController')},id=*{{id}}">
+                    <table id="pets-detail-table" style="width: 99.7%" class="table table-striped table-hover table-bordered" data-datatables="true" data-row-id="id" data-z="1bbbd492" data-order="[[ 1, &quot;asc&quot; ]]" data-data-load-url="${detailCollectionLink.to('datatables').with('owner', id)}" data-data-show-url="${detailItemLink.to('show').with('pet', '_ID_')}" data-data-edit-url="${detailItemLink.to('editForm').with('pet', '_ID_')}" data-data-create-url="${detailCollectionLink.to('createForm').with('owner', id)}" data-data-delete-url="${detailCollectionLink.to('removeFromPets').with('owner', id).with('petsToRemove', '_ID_')}" data-data-delete-batch-url="${detailCollectionLink.to('removeFromPetsBatch').with('owner', id).with('petsToRemove', '_ID_')}">
+                      <caption class="sr-only" data-th-text="#{label_list_of_entity(#{label_owner_pets})}">Pets List</caption>
+                      <thead>
+                        <tr>
+                          <th data-data="id" data-checkboxes="true"></th>
+                              <th data-data="sendReminders" data-th-text="#{label_owner_pets_sendreminders}">sendReminders</th>
+                              <th data-data="name" data-th-text="#{label_owner_pets_name}">name</th>
+                              <th data-data="weight" data-th-text="#{label_owner_pets_weight}">weight</th>
+                              <th data-data="type" data-th-text="#{label_owner_pets_type}">type</th>
+                              <th data-data="owner" data-th-text="#{label_owner_pets_owner}">owner</th>
+                              <th data-data="id" data-orderable="false" data-searchable="false" class="dttools" data-th-text="#{label_tools}">Tools</th>
+                        </tr>
+                      </thead>
+                      <tbody data-th-remove="all">
+                        <tr>
+                              <td>sendReminders</td>
+                              <td>name</td>
+                              <td>weight</td>
+                              <td>type</td>
+                              <td>owner</td>
+                          <td data-th-text="#{label_tools}">Tools</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- content replaced by modal-confirm fragment of modal-confirm.html -->
+                    <div data-th-replace="~{fragments/modal-confirm-delete :: modalConfirmDelete(tableId='pets-detail-table',
+                        title=#{label_delete_entity(#{label_owner_pets})}, message=#{info_delete_item_confirm}, content=~{/owners/pets/listDeleteModal :: pets-detailModalConfirmBody})}">
+                    </div>
+                   <div data-th-replace="~{fragments/modal-confirm-delete-batch :: modalConfirmDeleteBatch(tableId='pets-detail-table',
+                        title=#{label_delete_entity(#{label_owner_pets})}, message=#{info_delete_batch_confirm}, content=~{/owners/pets/listDeleteModalBatch :: pets-detailModalConfirmBody})}">
+                    </div>
+                    <div data-th-replace="~{fragments/modal-export-empty-error :: modalExportEmptyError(tableId='pets-detail-table',
+                        title=#{label_export_empty_error(#{label_owner_pets})}, message=#{info_export_empty_error})}">
+                    </div>
+                </div> <!--/table-responsive">
+                <!--END TABLE-->
+              </div> <!--/tab-pane -->
+            </div> <!--/tab-content-->
+        </div>
+
+          <div class="clearfix">
+            <div class="pull-left">
+              <a id="Owner_list" href="list.html" class="btn btn-default" data-th-title="#{label_goBack}" data-th-href="${@linkBuilder.of('OwnersCollectionThymeleafController').to('list')}">
+  	             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  	             <span data-th-text="#{label_back}">Back</span>
+  	          </a>
+            </div>
+          </div>
+        </hr></div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

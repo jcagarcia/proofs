@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_pet})}|">Show Pet - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${pet}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="pet-sendreminders-field" data-z="8114df6a">
+            	      <strong data-th-text="#{label_pet_sendreminders}">sendReminders</strong>
+                    <span data-th-text="*{{sendReminders}}">sendRemindersValue</span>
+         	        </li>
+                  <li id="pet-name-field" data-z="88472854">
+            	      <strong data-th-text="#{label_pet_name}">name</strong>
+                    <span data-th-text="*{{name}}">nameValue</span>
+         	        </li>
+                  <li id="pet-weight-field" data-z="e81cdd74">
+            	      <strong data-th-text="#{label_pet_weight}">weight</strong>
+                    <span data-th-text="*{{weight}}">weightValue</span>
+         	        </li>
+                  <li id="pet-type-field" data-z="94374e74">
+            	      <strong data-th-text="#{label_pet_type}">type</strong>
+                    <span data-th-text="*{{type}}">typeValue</span>
+         	        </li>
+                  <li id="pet-owner-field" data-z="ddfc3b4a">
+            	      <strong data-th-text="#{label_pet_owner}">owner</strong>
+                    <span data-th-text="*{{owner}}">ownerValue</span>
+         	        </li>
+                  <li id="pet-createddate-field" data-z="ef7a52ca">
+            	      <strong data-th-text="#{label_pet_createddate}">createdDate</strong>
+                    <span data-th-text="*{{createdDate}}">createdDateValue</span>
+         	        </li>
+                  <li id="pet-createdby-field" data-z="1728706a">
+            	      <strong data-th-text="#{label_pet_createdby}">createdBy</strong>
+                    <span data-th-text="*{{createdBy}}">createdByValue</span>
+         	        </li>
+                  <li id="pet-modifieddate-field" data-z="6dcc31f4">
+            	      <strong data-th-text="#{label_pet_modifieddate}">modifiedDate</strong>
+                    <span data-th-text="*{{modifiedDate}}">modifiedDateValue</span>
+         	        </li>
+                  <li id="pet-modifiedby-field" data-z="f3dc1214">
+            	      <strong data-th-text="#{label_pet_modifiedby}">modifiedBy</strong>
+                    <span data-th-text="*{{modifiedBy}}">modifiedByValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

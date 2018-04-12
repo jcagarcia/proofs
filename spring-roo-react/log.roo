@@ -42,3 +42,7 @@ service --all --apiPackage service-api:~. --implPackage service-impl:~.
 web mvc setup
 // [failed] script clinic-rest.roo
 hint
+// Spring Roo 2.0.0.RC3 [rev 13cc6cc] log opened at 2018-04-12 17:31:01
+hint
+web mvc controller --all --pathPrefix /api
+security setup --provider DEFAULT 

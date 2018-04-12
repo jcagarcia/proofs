@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.springsource.petclinic</groupId>
+        <artifactId>petclinic</artifactId>
+        <version>1.0.0.BUILD-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>repository</artifactId>
+    <packaging>jar</packaging>
+    <name>repository</name>
+    <dependencies>
+        <!-- AspectJ dependencies -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <!-- Spring Roo annotations -->
+        <dependency>
+            <groupId>org.springframework.roo</groupId>
+            <artifactId>org.springframework.roo.annotations</artifactId>
+            <type>pom</type>
+        </dependency>
+    <dependency>
+            <groupId>com.springsource.petclinic</groupId>
+            <artifactId>model</artifactId>
+        </dependency>
+    <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+        </dependency>
+    <dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-data-commons</artifactId>
+        </dependency>
+    <dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!-- AspectJ plugins -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+            </plugin>
+            <!-- Asciidoclet plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        <plugin>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

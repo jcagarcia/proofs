@@ -9,17 +9,30 @@ import {
     MatCardModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PetEditComponent} from './pet-edit/pet-edit.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from './home/home.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
 
 // Define routes
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/pet-list', pathMatch: 'full'},
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'},
+    {
+        path: 'home',
+        component: HomeComponent
+    },
     {
         path: 'pet-list',
         component: PetListComponent
@@ -39,7 +52,9 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         PetListComponent,
-        PetEditComponent
+        PetEditComponent,
+        HomeComponent,
+        TopMenuComponent
     ],
     imports: [
         BrowserModule,
@@ -50,7 +65,11 @@ const appRoutes: Routes = [
         MatInputModule,
         MatSelectModule,
         MatListModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
         MatToolbarModule,
+        MatProgressSpinnerModule,
         FormsModule,
         RouterModule.forRoot(appRoutes)
     ],

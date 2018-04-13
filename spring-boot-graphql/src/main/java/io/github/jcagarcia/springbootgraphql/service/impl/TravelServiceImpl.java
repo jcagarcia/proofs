@@ -6,6 +6,7 @@ import io.github.jcagarcia.springbootgraphql.service.api.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,14 +32,37 @@ public class TravelServiceImpl implements TravelService {
     }
 
     /**
-     * Method that saves a new travel
+     * {@inheritDoc}
+     * @param urlCode
+     * @return
+     */
+    @Override
+    public Travel findByUrlCode(String urlCode) {
+        return travelRepository.findAllByUrlCode(urlCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param travel
+     * @return
+     */
+    @Override
+    public Travel save(Travel travel) {
+        return travelRepository.save(travel);
+    }
+
+    /**
      *
-     * @param name
+     * {@inheritDoc}
+     *
+     * @param startDate
+     * @param endDate
      * @param country
      * @return
      */
     @Override
-    public Travel create(String name, String country) {
-        return travelRepository.save(new Travel(name, country));
+    public Travel create(Date startDate, Date endDate, String country) {
+        return travelRepository.save(new Travel(startDate, endDate, country));
     }
+
 }

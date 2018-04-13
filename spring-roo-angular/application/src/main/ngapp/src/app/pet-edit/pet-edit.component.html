@@ -1,7 +1,7 @@
 <mat-card>
     <form #petForm="ngForm" (ngSubmit)="save(petForm.value)">
         <mat-card-header>
-            <mat-card-title><h2>{{pet.name ? 'Edit' : 'Add'}} Pet</h2></mat-card-title>
+            <mat-card-title><h2>{{pet.id ? 'Edit' : 'Add'}} Pet</h2></mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <input type="hidden" name="id" [(ngModel)]="pet.id" #id>

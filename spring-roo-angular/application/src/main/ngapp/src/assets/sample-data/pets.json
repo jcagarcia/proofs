@@ -1,0 +1,82 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "name": "Nariko",
+      "weight": 22,
+      "sendReminders": false,
+      "type": "dog"
+    },
+    {
+      "id": 2,
+      "name": "Shermy",
+      "weight": 30,
+      "sendReminders": false,
+      "type": "dog"
+    },
+    {
+      "id": 3,
+      "name": "Orsa",
+      "weight": 22,
+      "sendReminders": true,
+      "type": "cat"
+    },
+    {
+      "id": 4,
+      "name": "Al",
+      "weight": 13,
+      "sendReminders": true,
+      "type": "bird"
+    },
+    {
+      "id": 5,
+      "name": "Salvidor",
+      "weight": 6,
+      "sendReminders": true,
+      "type": "cat"
+    },
+    {
+      "id": 6,
+      "name": "Alice",
+      "weight": 18,
+      "sendReminders": false,
+      "type": "cat"
+    },
+    {
+      "id": 7,
+      "name": "Court",
+      "weight": 27,
+      "sendReminders": true,
+      "type": "cat"
+    },
+    {
+      "id": 8,
+      "name": "Aloise",
+      "weight": 19,
+      "sendReminders": true,
+      "type": "bird"
+    },
+    {
+      "id": 9,
+      "name": "Idaline",
+      "weight": 31,
+      "sendReminders": false,
+      "type": "bird"
+    },
+    {
+      "id": 10,
+      "name": "Helaina",
+      "weight": 13,
+      "sendReminders": true,
+      "type": "cat"
+    }
+  ],
+  "last": false,
+  "totalPages": 10,
+  "totalElements": 100,
+  "sort": null,
+  "first": true,
+  "numberOfElements": 10,
+  "size": 10,
+  "number": 0
+}

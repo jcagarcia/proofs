@@ -2,6 +2,8 @@ package io.github.jcagarcia.springbootgraphql.service.api;
 
 import io.github.jcagarcia.springbootgraphql.model.Travel;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,11 +19,30 @@ public interface TravelService {
     List<Travel> findAll();
 
     /**
+     * Obtains a travel from the provided urlCOde
+     *
+     * @param urlCode
+     * @return
+     */
+    Travel findByUrlCode(String urlCode);
+
+    /**
+     * Method to save the travel
+     *
+     * @param travel
+     * @return
+     */
+    Travel save(Travel travel);
+
+    /**
      * Method to create a new Travel
      *
-     * @param name
+     * @param startDate
+     * @param endDate
      * @param country
      * @return
      */
-    Travel create(String name, String country);
+    Travel create(Date startDate, Date endDate, String country);
+
+
 }

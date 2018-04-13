@@ -4,6 +4,7 @@ import io.springlets.web.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,17 +17,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
     /**
-     * Serves the index page
+     * Serves the Angular Application
      *
      * @return
      */
-    @RequestMapping(value = "/")
-    public String home(){
+    @RequestMapping(value = "/**")
+    public String angularApp(){
         return "index";
     }
 
     /**
-     * Serve .ico inside the templates folder
+     * Serves the .ico files inside the templates folder
      *
      * @param template
      * @return
@@ -40,7 +41,21 @@ public class MainController {
     }
 
     /**
-     * Serve .js files inside the templates folder
+     * Serve the .css files inside the templates folder
+     *
+     * @param template
+     * @return
+     */
+    @RequestMapping(value = "/{template}.css", method = RequestMethod.GET)
+    public String cssTemplates(@PathVariable("template") String template) {
+        if (StringUtils.hasLength(template)) {
+            return template.concat(".css");
+        }
+        throw new NotFoundException("File not found");
+    }
+
+    /**
+     * Serve the .js files inside the templates folder
      *
      * @param template
      * @return

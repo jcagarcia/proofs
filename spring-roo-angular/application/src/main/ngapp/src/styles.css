@@ -5,3 +5,13 @@ body {
     margin: 0;
     font-family: Roboto, sans-serif;
 }
+span.navbar-brand{
+    cursor: pointer;
+}
+span.nav-link{
+    cursor: pointer;
+}
+.mat-row:hover{
+    background:#EEEEEE;
+    cursor: pointer;
+}

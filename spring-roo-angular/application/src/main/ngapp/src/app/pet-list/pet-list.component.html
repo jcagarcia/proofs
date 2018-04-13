@@ -1,15 +1,51 @@
 <mat-card>
-  <mat-card-header>Pet List</mat-card-header>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let pet of pets">
-        <h3 mat-line>
-          <a mat-button [routerLink]="['/pet-edit', pet.id]">{{pet.name}}</a>
-        </h3>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
+    <div class="d-inline-block col-md-5">
+        <mat-card-header>Pet List</mat-card-header>
+    </div>
+    <div class="d-inline-block align-content-end col-md-5" style="text-align: right;">
+        <button mat-fab color="primary" [routerLink]="['/pet-add']">Add</button>
+    </div>
+    <mat-card-content>
+        <mat-table [dataSource]="pets">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                <mat-cell *matCellDef="let pet"> {{pet.name}}</mat-cell>
+            </ng-container>
 
-  <button mat-fab color="primary" [routerLink]="['/pet-add']">Add</button>
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+                <mat-cell *matCellDef="let pet"> {{pet.type}}</mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+                <mat-header-cell *matHeaderCellDef> Weight</mat-header-cell>
+                <mat-cell *matCellDef="let pet"> {{pet.weight}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="tools">
+                <mat-header-cell *matHeaderCellDef>Tools</mat-header-cell>
+                <mat-cell *matCellDef="let pet">
+                    <span [routerLink]="['/pet-edit', pet.id]"><i class="material-icons">build</i></span>
+                    <span class="glyphicon glyphicon-pencil" (click)="onClickDelete(pet.id)"><i class="material-icons">delete</i></span>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Define headers -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator #paginator
+                       [length]="resultsLength"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="pageSizeOptions"
+                       [showFirstLastButtons]="true"
+                       (page)="onPaginateChange($event)">>
+        </mat-paginator>
+    </mat-card-content>
 
 </mat-card>

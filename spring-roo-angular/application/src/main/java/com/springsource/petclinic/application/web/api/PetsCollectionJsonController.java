@@ -24,15 +24,15 @@ import java.util.List;
 public class PetsCollectionJsonController {
 
     /**
-     * By default, Sprign Roo generates this method returning a Page. Changing to return just a list
+     * Obtain a list of pets
      *
      * @param globalSearch
      * @param pageable
      * @return ResponseEntity
      */
     @GetMapping(name = "list")
-    public ResponseEntity<List<Pet>> list(GlobalSearch globalSearch, Pageable pageable) {
-        List<Pet> pets = getPetService().findAll(globalSearch, pageable).getContent();
+    public ResponseEntity<Page<Pet>> list(GlobalSearch globalSearch, Pageable pageable) {
+        Page<Pet> pets = getPetService().findAll(globalSearch, pageable);
         return ResponseEntity.ok(pets);
     }
 

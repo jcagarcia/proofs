@@ -1,7 +1,16 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!-- The main layout -->
 <mat-toolbar color="primary">
-  <span>Welcome to {{title}}!</span>
+    <span class="navbar-brand" routerLink="home">{{title}}</span>
+    <!-- The app menu -->
+    <app-top-menu></app-top-menu>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<!-- Here is where the content will be renderized -->
+<div style="padding:60px;">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
 
 

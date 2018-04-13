@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class PetService {
 
-    public PETS_URL = '/api/pets';
+    public PETS_URL = environment.apiRoot + '/pets' + environment.apiExtension;
 
     /**
      * The default constructor
@@ -21,8 +22,13 @@ export class PetService {
      *
      * @returns {Observable<any>}
      */
-    getAll(): Observable<any> {
-        return this.http.get(this.PETS_URL);
+    getAll(page: number, size: number): Observable<any>{
+        return this.http.get(this.PETS_URL, {
+            params: {
+                "page": page.toString(),
+                "size": size.toString(),
+            }
+        });
     }
 
     /**
@@ -57,8 +63,8 @@ export class PetService {
      * @param {string} href
      * @returns {Observable<Object>}
      */
-    remove(id: string) {
-        return this.http.delete(this.PETS_URL + '/' + id);
+    remove(id: number): Observable<any> {
+        return this.http.delete(this.PETS_URL + '/' + id.toString());
     }
 
     /**

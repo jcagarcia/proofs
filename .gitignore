@@ -4,3 +4,4 @@ spring-roo-no-aspect-java.iml
 target
 *.iml
 node_modules
+package-lock.json

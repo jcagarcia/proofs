@@ -1,4 +1,5 @@
 package com.springsource.petclinic.application.config.jackson;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.roo.addon.web.mvc.controller.annotations.config.RooDomainModelModule;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.roo.addon.web.mvc.controller.annotations.config.RooDo
  *
  */
 @RooDomainModelModule
-public class DomainModelModule {
+public class DomainModelModule extends SimpleModule {
 }

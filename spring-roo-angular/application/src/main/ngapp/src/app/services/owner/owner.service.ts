@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 /**
- * Service to manage the Owner service
+ * Service to manage the Owner entity
  */
 @Injectable()
-export class PetService {
+export class OwnerService {
 
     /**
      * The default constructor
@@ -19,7 +19,7 @@ export class PetService {
     }
 
     /**
-     * Method to obtain all the registered pets
+     * Method to obtain all the registered owners
      *
      * @param {string} search
      * @param {number} page
@@ -27,8 +27,8 @@ export class PetService {
      * @param {string} sort
      * @returns {Observable<any>}
      */
-    getAll(search:string, page: number, size: number, sort: string): Observable<any>{
-        return this.http.get(environment.api.pets.collection, {
+    getAll(search: string, page: number, size: number, sort:string): Observable<any> {
+        return this.http.get(environment.api.owners.collection, {
             params: {
                 "search[value]": search != undefined && search != null ? search : "",
                 "page": page.toString(),
@@ -39,61 +39,52 @@ export class PetService {
     }
 
     /**
-     * Method to obtain an individual pet
+     * Method to obtain an individual owner
      *
      * @param {string} id
      * @returns {Observable<Object>}
      */
     get(id: string): Observable<any> {
-        let itemUrl = this.compositeUrl(environment.api.pets.item, id);
+        let itemUrl = this.compositeUrl(environment.api.owners.item, id);
         return this.http.get(itemUrl);
     }
 
     /**
-     * Method to add a new pet
+     * Method to add a new owner
      *
-     * @param pet
+     * @param owner
      * @returns {Observable<any>}
      */
-    save(pet: any): Observable<any> {
+    save(owner: any): Observable<any> {
         let result: Observable<Object>;
-        if (pet.id != null && pet.version != null) {
-            let itemUrl = this.compositeUrl(environment.api.pets.item, pet.id);
-            result = this.http.put(itemUrl, pet);
+        if (owner.id != null && owner.version != null) {
+            let itemUrl = this.compositeUrl(environment.api.owners.item, owner.id);
+            result = this.http.put(itemUrl, owner);
         } else {
-            result = this.http.post(environment.api.pets.collection, pet);
+            result = this.http.post(environment.api.owners.collection, owner);
         }
         return result;
     }
 
     /**
-     * Method that removes the provided pet id
+     * Method that removes the provided owner id
      *
      * @param {string} href
      * @returns {Observable<Object>}
      */
     remove(id: number): Observable<any> {
-        let itemUrl = this.compositeUrl(environment.api.pets.item, id.toString());
+        let itemUrl = this.compositeUrl(environment.api.owners.item, id.toString());
         return this.http.delete(itemUrl);
     }
 
     /**
      * Method that removes
-     * @param {Array<any>} selectedPets
+     * @param {Array<any>} selectedOwners
      * @returns {Observable<Object>}
      */
-    removeAll(selectedPets: Array<any>) {
-        let deleteBatchUrl = this.compositeUrl(environment.api.pets.deleteBatch, selectedPets.toString());
+    removeAll(selectedOwners: Array<any>) {
+        let deleteBatchUrl = this.compositeUrl(environment.api.owners.deleteBatch, selectedOwners.toString());
         return this.http.delete(deleteBatchUrl);
-    }
-
-    /**
-     * Obtains all the existing pet types
-     *
-     * @returns {Observable<Object>}
-     */
-    getTypes(): Observable<any>{
-        return this.http.get(environment.api.pets.types);
     }
 
     /**
@@ -104,7 +95,7 @@ export class PetService {
      * @param {string} id
      */
     private compositeUrl(url: string, id: string) {
-        if(url.indexOf("_ID_") != -1){
+        if (url.indexOf("_ID_") != -1) {
             url = url.replace("_ID_", id);
         }
         return url;

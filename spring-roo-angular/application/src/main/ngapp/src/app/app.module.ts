@@ -22,13 +22,16 @@ import {RouterModule, Routes} from '@angular/router';
 
 // Including services
 import {PetService} from './services/pet/pet.service';
+import {OwnerService} from './services/owner/owner.service';
 
 // Including components
 import {HomeComponent} from './components/home/home.component';
-import {PetListComponent} from './components/pets/pet-list/pet-list.component';
-import {PetEditComponent} from './components/pets/pet-edit/pet-edit.component';
 import {TopMenuComponent} from './components/top-menu/top-menu.component';
 import {DeleteConfirmDialogComponent} from './components/delete-confirm-dialog/delete-confirm-dialog.component';
+import {PetListComponent} from './components/pets/pet-list/pet-list.component';
+import {PetEditComponent} from './components/pets/pet-edit/pet-edit.component';
+import {OwnerListComponent} from './components/owners/owner-list/owner-list.component';
+import {OwnerEditComponent} from './components/owners/owner-edit/owner-edit.component';
 
 // Define routes
 const appRoutes: Routes = [
@@ -40,6 +43,18 @@ const appRoutes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'owner-list',
+        component: OwnerListComponent
+    },
+    {
+        path: 'owner-add',
+        component: OwnerEditComponent
+    },
+    {
+        path: 'owner-edit/:id',
+        component: OwnerEditComponent
     },
     {
         path: 'pet-list',
@@ -59,11 +74,13 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        PetListComponent,
-        PetEditComponent,
         HomeComponent,
         TopMenuComponent,
-        DeleteConfirmDialogComponent
+        DeleteConfirmDialogComponent,
+        PetListComponent,
+        PetEditComponent,
+        OwnerListComponent,
+        OwnerEditComponent,
     ],
     entryComponents: [
         DeleteConfirmDialogComponent
@@ -87,7 +104,10 @@ const appRoutes: Routes = [
         FormsModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [PetService],
+    providers: [
+        PetService,
+        OwnerService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

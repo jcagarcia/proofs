@@ -1,6 +1,6 @@
 <mat-card>
     <div class="d-inline-block col-md-7">
-        <mat-card-header>Pet List</mat-card-header>
+        <mat-card-header>Owner List</mat-card-header>
     </div>
     <div class="d-inline-block col-md-3">
         <mat-form-field>
@@ -8,41 +8,47 @@
         </mat-form-field>
     </div>
     <!-- Add button -->
-    <button mat-fab color="primary" [routerLink]="['/pet-add']"><i class="material-icons">add</i></button>
+    <button mat-fab color="primary" [routerLink]="['/owner-add']"><i class="material-icons">add</i></button>
     <!-- Remove in batch button -->
     <button mat-fab color="primary" (click)="onClickDeleteInBatch()"
-            [disabled]="selectedPets.length == 0">
+            [disabled]="selectedOwners.length == 0">
         <i class="material-icons">delete</i>
     </button>
 
     <mat-card-content>
 
-        <mat-table [dataSource]="pets" matSort (matSortChange)="onSortChange($event)">
+        <mat-table [dataSource]="owners" matSort (matSortChange)="onSortChange($event)">
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
-                <mat-cell *matCellDef="let pet"> {{pet.name}}</mat-cell>
+            <!-- FirstName Column -->
+            <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> First Name</mat-header-cell>
+                <mat-cell *matCellDef="let owner"> {{owner.firstName}}</mat-cell>
             </ng-container>
 
-            <!-- Type Column -->
-            <ng-container matColumnDef="type">
-                <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-                <mat-cell *matCellDef="let pet"> {{pet.type}}</mat-cell>
+            <!-- LastName Column -->
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name</mat-header-cell>
+                <mat-cell *matCellDef="let owner"> {{owner.lastName}}</mat-cell>
             </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Weight</mat-header-cell>
-                <mat-cell *matCellDef="let pet"> {{pet.weight}}</mat-cell>
+            <!-- City Column -->
+            <ng-container matColumnDef="city">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> City</mat-header-cell>
+                <mat-cell *matCellDef="let owner"> {{owner.city}}</mat-cell>
+            </ng-container>
+
+            <!-- Telephone Column -->
+            <ng-container matColumnDef="telephone">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone</mat-header-cell>
+                <mat-cell *matCellDef="let owner"> {{owner.telephone}}</mat-cell>
             </ng-container>
 
             <!-- Tools column -->
             <ng-container matColumnDef="tools">
                 <mat-header-cell *matHeaderCellDef>Tools</mat-header-cell>
-                <mat-cell *matCellDef="let pet">
-                    <span [routerLink]="['/pet-edit', pet.id]"><i class="material-icons">build</i></span>
-                    <span class="glyphicon glyphicon-pencil" (click)="onClickDelete(pet.id)"><i class="material-icons">delete</i></span>
+                <mat-cell *matCellDef="let owner">
+                    <span [routerLink]="['/owner-edit', owner.id]"><i class="material-icons">build</i></span>
+                    <span class="glyphicon glyphicon-pencil" (click)="onClickDelete(owner.id)"><i class="material-icons">delete</i></span>
                 </mat-cell>
             </ng-container>
 

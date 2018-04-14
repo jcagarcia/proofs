@@ -9,7 +9,8 @@ export const environment = {
         },
         owners: {
             collection: "/api/owners",
-            item: "/api/owners/_ID_"
+            item: "/api/owners/_ID_",
+            deleteBatch: "/api/owners/batch/_ID_",
         }
     }
 };

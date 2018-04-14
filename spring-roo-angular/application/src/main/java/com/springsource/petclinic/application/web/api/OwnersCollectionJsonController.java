@@ -22,15 +22,15 @@ import java.util.List;
 public class OwnersCollectionJsonController {
 
     /**
-     * By default, Sprign Roo generates this method returning a Page. Changing to return just a list
+     * Method that returns a page with all the registered owners
      *
      * @param globalSearch
      * @param pageable
      * @return ResponseEntity
      */
     @GetMapping(name = "list")
-    public ResponseEntity<List<Owner>> list(GlobalSearch globalSearch, Pageable pageable) {
-        List<Owner> owners = getOwnerService().findAll(globalSearch, pageable).getContent();
+    public ResponseEntity<Page<Owner>> list(GlobalSearch globalSearch, Pageable pageable) {
+        Page<Owner> owners = getOwnerService().findAll(globalSearch, pageable);
         return ResponseEntity.ok(owners);
     }
 }

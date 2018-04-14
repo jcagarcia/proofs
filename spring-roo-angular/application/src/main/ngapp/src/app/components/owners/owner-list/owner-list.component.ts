@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {PetService} from '../../../services/pet/pet.service';
+import {OwnerService} from '../../../services/owner/owner.service';
 import {DeleteConfirmDialogComponent} from "../../delete-confirm-dialog/delete-confirm-dialog.component";
 
 @Component({
-    selector: 'app-pet-list',
-    templateUrl: './pet-list.component.html',
-    styleUrls: ['./pet-list.component.css']
+    selector: 'app-owner-list',
+    templateUrl: './owner-list.component.html',
+    styleUrls: ['./owner-list.component.css']
 })
-export class PetListComponent implements OnInit {
+export class OwnerListComponent implements OnInit {
 
     // Data
-    displayedColumns = ['name', 'weight', 'type', 'tools', 'select'];
-    pets: any;
-    selectedPets = [];
+    displayedColumns = ['firstName', 'lastName', 'city', 'telephone', 'tools', 'select'];
+    owners: any;
+    selectedOwners = [];
 
-    // Pagination sort and search
+    // Pagination, sort and search
     resultsLength: number = 0;
     pageIndex: number = 0;
     pageSize: number = 5;
@@ -23,7 +23,7 @@ export class PetListComponent implements OnInit {
     sort:string;
     search: string;
 
-    constructor(private petService: PetService, private deleteDialog: MatDialog) {
+    constructor(private ownerService: OwnerService, private deleteDialog: MatDialog) {
     }
 
     /**
@@ -37,9 +37,9 @@ export class PetListComponent implements OnInit {
      * Private method used to load the data
      */
     private loadData() {
-        this.petService.getAll(this.search, this.pageIndex, this.pageSize, this.sort).subscribe(data => {
+        this.ownerService.getAll(this.search, this.pageIndex, this.pageSize, this.sort).subscribe(data => {
             this.setPagination(data.totalElements, data.number, data.size);
-            this.pets = data.content;
+            this.owners = data.content;
         });
     }
 
@@ -95,8 +95,8 @@ export class PetListComponent implements OnInit {
      * @param {number} id
      */
     onClickDelete(id: number) {
-        this.petService.remove(id).subscribe(data => {
-            this.pets = this.loadData();
+        this.ownerService.remove(id).subscribe(data => {
+            this.owners = this.loadData();
         });
     }
 
@@ -104,7 +104,7 @@ export class PetListComponent implements OnInit {
      * Function to delete in batch all the selected items
      */
     onClickDeleteInBatch() {
-        if(this.selectedPets.length > 0){
+        if(this.selectedOwners.length > 0){
             let confirm = false;
             let dialogRef = this.deleteDialog.open(DeleteConfirmDialogComponent, {
                 height: '200px',
@@ -112,9 +112,9 @@ export class PetListComponent implements OnInit {
             });
             dialogRef.afterClosed().subscribe(result => {
                 if(result){
-                    this.petService.removeAll(this.selectedPets).subscribe(data => {
-                        this.pets = this.loadData();
-                        this.selectedPets = [];
+                    this.ownerService.removeAll(this.selectedOwners).subscribe(data => {
+                        this.owners = this.loadData();
+                        this.selectedOwners = [];
                     });
                 }
             });
@@ -129,11 +129,11 @@ export class PetListComponent implements OnInit {
      */
     onSelectOrDeselectRow(event:any, row:any){
         if(event.checked){
-            this.selectedPets.push(row.id);
+            this.selectedOwners.push(row.id);
         }else{
-            var index =  this.selectedPets.indexOf(row.id, 0);
+            var index =  this.selectedOwners.indexOf(row.id, 0);
             if (index > -1) {
-                this.selectedPets.splice(index, 1);
+                this.selectedOwners.splice(index, 1);
             }
         }
     }

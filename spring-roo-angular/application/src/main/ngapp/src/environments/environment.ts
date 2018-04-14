@@ -9,7 +9,8 @@ export const environment = {
         },
         owners: {
             collection: "/assets/sample-data/owners.json",
-            item: "/assets/sample-data/owner.json"
+            item: "/assets/sample-data/owner.json",
+            deleteBatch: ""
         },
     }
 };

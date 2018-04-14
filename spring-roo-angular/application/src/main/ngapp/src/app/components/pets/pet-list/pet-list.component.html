@@ -1,12 +1,24 @@
 <mat-card>
-    <div class="d-inline-block col-md-5">
+    <div class="d-inline-block col-md-7">
         <mat-card-header>Pet List</mat-card-header>
     </div>
-    <div class="d-inline-block align-content-end col-md-5" style="text-align: right;">
-        <button mat-fab color="primary" [routerLink]="['/pet-add']">Add</button>
+    <div class="d-inline-block col-md-3">
+        <mat-form-field>
+            <input matInput placeholder="Filter" #filter (input)="applyFilter($event.target.value)">
+        </mat-form-field>
     </div>
+    <!-- Add button -->
+    <button mat-fab color="primary" [routerLink]="['/pet-add']"><i class="material-icons">add</i></button>
+    <!-- Remove in batch button -->
+    <button mat-fab color="primary" (click)="onClickDeleteInBatch()"
+            [disabled]="selectedPets.length == 0">
+        <i class="material-icons">delete</i>
+    </button>
+
     <mat-card-content>
+
         <mat-table [dataSource]="pets">
+
             <!-- Name Column -->
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
@@ -25,11 +37,21 @@
                 <mat-cell *matCellDef="let pet"> {{pet.weight}}</mat-cell>
             </ng-container>
 
+            <!-- Tools column -->
             <ng-container matColumnDef="tools">
                 <mat-header-cell *matHeaderCellDef>Tools</mat-header-cell>
                 <mat-cell *matCellDef="let pet">
                     <span [routerLink]="['/pet-edit', pet.id]"><i class="material-icons">build</i></span>
                     <span class="glyphicon glyphicon-pencil" (click)="onClickDelete(pet.id)"><i class="material-icons">delete</i></span>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Checkbox column -->
+            <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <mat-checkbox (change)="$event ? onSelectOrDeselectRow($event, row) : null"></mat-checkbox>
                 </mat-cell>
             </ng-container>
 

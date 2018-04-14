@@ -15,3 +15,6 @@ span.nav-link{
     background:#EEEEEE;
     cursor: pointer;
 }
+.mat-column-select {
+    overflow: initial;
+}

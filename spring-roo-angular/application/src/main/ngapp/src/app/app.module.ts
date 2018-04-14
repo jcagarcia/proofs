@@ -1,9 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {PetService} from './shared/pet/pet.service';
 import {HttpClientModule} from '@angular/common/http';
-import {PetListComponent} from './pet-list/pet-list.component';
 import {
     MatButtonModule,
     MatCardModule,
@@ -12,23 +10,33 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCheckboxModule,
     MatListModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PetEditComponent} from './pet-edit/pet-edit.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import { TopMenuComponent } from './top-menu/top-menu.component';
+
+// Including services
+import {PetService} from './services/pet/pet.service';
+
+// Including components
+import {HomeComponent} from './components/home/home.component';
+import {PetListComponent} from './components/pets/pet-list/pet-list.component';
+import {PetEditComponent} from './components/pets/pet-edit/pet-edit.component';
+import {TopMenuComponent} from './components/top-menu/top-menu.component';
+import {DeleteConfirmDialogComponent} from './components/delete-confirm-dialog/delete-confirm-dialog.component';
 
 // Define routes
 const appRoutes: Routes = [
     {
         path: '',
         redirectTo: '/home',
-        pathMatch: 'full'},
+        pathMatch: 'full'
+    },
     {
         path: 'home',
         component: HomeComponent
@@ -54,7 +62,11 @@ const appRoutes: Routes = [
         PetListComponent,
         PetEditComponent,
         HomeComponent,
-        TopMenuComponent
+        TopMenuComponent,
+        DeleteConfirmDialogComponent
+    ],
+    entryComponents: [
+        DeleteConfirmDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -68,8 +80,10 @@ const appRoutes: Routes = [
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
+        MatCheckboxModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
         FormsModule,
         RouterModule.forRoot(appRoutes)
     ],

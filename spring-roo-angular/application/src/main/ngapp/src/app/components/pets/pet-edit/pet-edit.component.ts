@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PetService} from '../shared/pet/pet.service';
+import {PetService} from '../../../services/pet/pet.service';
 import {NgForm} from '@angular/forms';
 
 @Component({

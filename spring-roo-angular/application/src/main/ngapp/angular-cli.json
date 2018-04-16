@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "../resources/templates",
+      "outDir": "../../../target/classes/templates",
       "assets": [
         "assets",
         "favicon.ico"

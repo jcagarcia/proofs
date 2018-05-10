@@ -1,0 +1,11 @@
+version: '2'
+services:
+    clinic-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/clinic/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=clinic
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

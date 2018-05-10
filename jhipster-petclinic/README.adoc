@@ -1,0 +1,3 @@
+= JHipster Petclinic
+
+Proof Of Concept of a petclinic sample application generated using JHipster generator

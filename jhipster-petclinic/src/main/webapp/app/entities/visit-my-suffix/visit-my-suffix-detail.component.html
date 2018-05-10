@@ -1,0 +1,30 @@
+
+<div *ngIf="visit">
+    <h2><span jhiTranslate="clinicApp.visit.detail.title">Visit</span> {{visit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="clinicApp.visit.description">Description</span></dt>
+        <dd>
+            <span>{{visit.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.visit.visitDate">Visit Date</span></dt>
+        <dd>
+            <span>{{visit.visitDate}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visit-my-suffix/'+ visit.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

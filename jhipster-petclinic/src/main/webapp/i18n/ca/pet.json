@@ -1,0 +1,27 @@
+
+{
+    "clinicApp": {
+        "pet" : {
+            "home": {
+                "title": "Pets",
+                "createLabel": "Create a new Pet",
+                "createOrEditLabel": "Create or edit a Pet"
+            },
+            "created": "A new Pet is created with identifier {{ param }}",
+            "updated": "A Pet is updated with identifier {{ param }}",
+            "deleted": "A Pet is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pet {{ id }}?"
+            },
+            "detail": {
+                "title": "Pet"
+            },
+            "sendReminders": "Send Reminders",
+            "name": "Name",
+            "weight": "Weight",
+            "petType": "Pet Type",
+            "owner": "Owner",
+            "visit": "Visit"
+        }
+    }
+}

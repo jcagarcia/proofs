@@ -1,0 +1,10 @@
+{
+    "clinicApp": {
+        "PetType" : {
+            "null": "",
+            "DIG": "DIG",
+            "CAT": "CAT",
+            "BIRD": "BIRD"
+        }
+    }
+}

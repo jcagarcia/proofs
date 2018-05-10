@@ -1,0 +1,34 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pet",
+            "otherEntityName": "pet",
+            "otherEntityRelationshipName": "visit"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "vet",
+            "otherEntityName": "vet",
+            "otherEntityRelationshipName": "visit"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "visitDate",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180510144515",
+    "entityTableName": "visit",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

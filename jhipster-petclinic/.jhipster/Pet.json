@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "owner",
+            "otherEntityName": "owner",
+            "otherEntityRelationshipName": "pet"
+        },
+        {
+            "relationshipName": "visit",
+            "otherEntityName": "visit",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sendReminders",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "petType",
+            "fieldType": "PetType",
+            "fieldValues": "DIG,CAT,BIRD"
+        }
+    ],
+    "changelogDate": "20180510144512",
+    "entityTableName": "pet",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

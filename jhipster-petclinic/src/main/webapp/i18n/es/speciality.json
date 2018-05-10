@@ -1,0 +1,10 @@
+{
+    "clinicApp": {
+        "Speciality" : {
+            "null": "",
+            "CARDIOLOGY": "CARDIOLOGY",
+            "DENTISTRY": "DENTISTRY",
+            "NUTRIOLOGY": "NUTRIOLOGY"
+        }
+    }
+}

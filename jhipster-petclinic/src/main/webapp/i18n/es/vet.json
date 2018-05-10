@@ -1,0 +1,32 @@
+
+{
+    "clinicApp": {
+        "vet" : {
+            "home": {
+                "title": "Vets",
+                "createLabel": "Crear nuevo Vet",
+                "createOrEditLabel": "Crear o editar Vet"
+            },
+            "created": "Un nuevo Vet ha sido creado con el identificador {{ param }}",
+            "updated": "Un Vet ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Vet ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Vet {{ id }}?"
+            },
+            "detail": {
+                "title": "Vet"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "address": "Address",
+            "city": "City",
+            "telephone": "Telephone",
+            "homePage": "Home Page",
+            "email": "Email",
+            "birthDate": "Birth Date",
+            "employeeSince": "Employee Since",
+            "speciality": "Speciality",
+            "visit": "Visit"
+        }
+    }
+}

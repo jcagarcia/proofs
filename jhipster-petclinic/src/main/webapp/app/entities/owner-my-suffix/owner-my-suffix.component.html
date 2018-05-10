@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span jhiTranslate="clinicApp.owner.home.title">Owners</span>
+        <button class="btn btn-primary float-right jh-create-entity create-owner-my-suffix" [routerLink]="['/', { outlets: { popup: ['owner-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="clinicApp.owner.home.createLabel">
+            Create new Owner
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="owners">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="clinicApp.owner.firstName">First Name</span></th>
+            <th><span jhiTranslate="clinicApp.owner.lastName">Last Name</span></th>
+            <th><span jhiTranslate="clinicApp.owner.address">Address</span></th>
+            <th><span jhiTranslate="clinicApp.owner.city">City</span></th>
+            <th><span jhiTranslate="clinicApp.owner.telephone">Telephone</span></th>
+            <th><span jhiTranslate="clinicApp.owner.homePage">Home Page</span></th>
+            <th><span jhiTranslate="clinicApp.owner.email">Email</span></th>
+            <th><span jhiTranslate="clinicApp.owner.birthDate">Birth Date</span></th>
+            <th><span jhiTranslate="clinicApp.owner.pet">Pet</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let owner of owners ;trackBy: trackId">
+                <td><a [routerLink]="['../owner-my-suffix', owner.id ]">{{owner.id}}</a></td>
+                <td>{{owner.firstName}}</td>
+                <td>{{owner.lastName}}</td>
+                <td>{{owner.address}}</td>
+                <td>{{owner.city}}</td>
+                <td>{{owner.telephone}}</td>
+                <td>{{owner.homePage}}</td>
+                <td>{{owner.email}}</td>
+                <td>{{owner.birthDate}}</td>
+                <td>
+                    <div *ngIf="owner.pet">
+                        <a [routerLink]="['../pet-my-suffix', owner.pet?.id ]" >{{owner.pet?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../owner-my-suffix', owner.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'owner-my-suffix/'+ owner.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'owner-my-suffix/'+ owner.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

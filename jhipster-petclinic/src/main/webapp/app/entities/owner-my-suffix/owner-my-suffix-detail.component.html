@@ -1,0 +1,60 @@
+
+<div *ngIf="owner">
+    <h2><span jhiTranslate="clinicApp.owner.detail.title">Owner</span> {{owner.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="clinicApp.owner.firstName">First Name</span></dt>
+        <dd>
+            <span>{{owner.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{owner.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.address">Address</span></dt>
+        <dd>
+            <span>{{owner.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.city">City</span></dt>
+        <dd>
+            <span>{{owner.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{owner.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.homePage">Home Page</span></dt>
+        <dd>
+            <span>{{owner.homePage}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.email">Email</span></dt>
+        <dd>
+            <span>{{owner.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.birthDate">Birth Date</span></dt>
+        <dd>
+            <span>{{owner.birthDate}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.owner.pet">Pet</span></dt>
+        <dd>
+            <div *ngIf="owner.pet">
+                <a [routerLink]="['/pet-my-suffix', owner.pet?.id]">{{owner.pet?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'owner-my-suffix/'+ owner.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

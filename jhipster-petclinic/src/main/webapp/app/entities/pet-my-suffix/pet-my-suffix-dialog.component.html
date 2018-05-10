@@ -1,0 +1,55 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPetLabel" jhiTranslate="clinicApp.pet.home.createOrEditLabel">Create or edit a Pet</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pet.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pet.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clinicApp.pet.sendReminders" for="field_sendReminders">Send Reminders</label>
+            <input type="checkbox" class="form-control" name="sendReminders" id="field_sendReminders"
+                [(ngModel)]="pet.sendReminders" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clinicApp.pet.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="pet.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clinicApp.pet.weight" for="field_weight">Weight</label>
+            <input type="number" class="form-control" name="weight" id="field_weight"
+                [(ngModel)]="pet.weight" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clinicApp.pet.petType" for="field_petType">Pet Type</label>
+            <select class="form-control" name="petType" [(ngModel)]="pet.petType" id="field_petType" >
+                <option value="DIG">{{'clinicApp.PetType.DIG' | translate}}</option>
+                <option value="CAT">{{'clinicApp.PetType.CAT' | translate}}</option>
+                <option value="BIRD">{{'clinicApp.PetType.BIRD' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="clinicApp.pet.visit" for="field_visit">Visit</label>
+            <select class="form-control" id="field_visit" name="visit" [(ngModel)]="pet.visit" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="visitOption.id === pet.visit?.id ? pet.visit : visitOption" *ngFor="let visitOption of visits; trackBy: trackVisitById">{{visitOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

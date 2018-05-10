@@ -1,0 +1,30 @@
+
+{
+    "clinicApp": {
+        "owner" : {
+            "home": {
+                "title": "Owners",
+                "createLabel": "Crear nuevo Owner",
+                "createOrEditLabel": "Crear o editar Owner"
+            },
+            "created": "Un nuevo Owner ha sido creado con el identificador {{ param }}",
+            "updated": "Un Owner ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Owner ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Owner {{ id }}?"
+            },
+            "detail": {
+                "title": "Owner"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "address": "Address",
+            "city": "City",
+            "telephone": "Telephone",
+            "homePage": "Home Page",
+            "email": "Email",
+            "birthDate": "Birth Date",
+            "pet": "Pet"
+        }
+    }
+}

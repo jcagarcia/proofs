@@ -1,0 +1,68 @@
+
+<div *ngIf="vet">
+    <h2><span jhiTranslate="clinicApp.vet.detail.title">Vet</span> {{vet.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="clinicApp.vet.firstName">First Name</span></dt>
+        <dd>
+            <span>{{vet.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{vet.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.address">Address</span></dt>
+        <dd>
+            <span>{{vet.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.city">City</span></dt>
+        <dd>
+            <span>{{vet.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{vet.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.homePage">Home Page</span></dt>
+        <dd>
+            <span>{{vet.homePage}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.email">Email</span></dt>
+        <dd>
+            <span>{{vet.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.birthDate">Birth Date</span></dt>
+        <dd>
+            <span>{{vet.birthDate}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.employeeSince">Employee Since</span></dt>
+        <dd>
+            <span>{{vet.employeeSince}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.speciality">Speciality</span></dt>
+        <dd>
+            <span jhiTranslate="{{'clinicApp.Speciality.' + vet.speciality}}">{{vet.speciality}}</span>
+        </dd>
+        <dt><span jhiTranslate="clinicApp.vet.visit">Visit</span></dt>
+        <dd>
+            <div *ngIf="vet.visit">
+                <a [routerLink]="['/visit-my-suffix', vet.visit?.id]">{{vet.visit?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'vet-my-suffix/'+ vet.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
